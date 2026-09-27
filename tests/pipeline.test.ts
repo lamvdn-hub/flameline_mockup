@@ -61,9 +61,9 @@ test("stillRequest targets the edit endpoint with image_urls when a reference is
   const plain = stillRequest("final", "P");
   expect(plain.slug).toBe("google/nano-banana-pro");
   expect(plain.body).toMatchObject({ prompt: "P", aspect_ratio: "16:9", resolution: "4K", sync_mode: true });
-  expect(plain.body.image_urls).toBeUndefined();
+  expect(plain.body).not.toHaveProperty("image_urls");
   const ref = stillRequest("final", "P", "https://v3.fal.media/x.png");
   expect(ref.slug).toBe("google/nano-banana-pro/edit");
-  expect(ref.body.image_urls).toEqual(["https://v3.fal.media/x.png"]);
+  expect(ref.body).toMatchObject({ image_urls: ["https://v3.fal.media/x.png"] });
   expect(stillRequest("draft", "P", "https://v3.fal.media/x.png").slug).toBe("google/nano-banana-2-lite/edit");
 });
