@@ -241,6 +241,12 @@ p {
   border-bottom: 1px solid var(--line);
   transition: background-color 300ms ease;
 }
+/* The film's CTA pair: the page-wide link colour must not override the engine's
+   primary button, whose label is ground on ember. */
+.sw-root .sw-btn--primary,
+.sw-root .sw-btn--primary:hover {
+  color: var(--ground);
+}
 .nav--solid {
   background: var(--ground);
 }

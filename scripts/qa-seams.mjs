@@ -97,13 +97,14 @@ const server = await serveStatic(root, PORT);
   await at(page, finaleY); if (!(await settle(page))) fail("finale: clips still seeking after 15 s");
   const cta = await page.evaluate(() => [...document.querySelectorAll(".sw-btn")].map((b) => {
     const cs = getComputedStyle(b); const r = b.getBoundingClientRect();
-    return { text: b.textContent, visible: r.width > 0 && r.height > 0 && cs.opacity !== "0", radius: cs.borderRadius, font: cs.fontFamily, href: b.getAttribute("href") };
+    return { text: b.textContent, visible: r.width > 0 && r.height > 0 && cs.opacity !== "0", radius: cs.borderRadius, font: cs.fontFamily, href: b.getAttribute("href"), primary: b.classList.contains("sw-btn--primary"), color: cs.color };
   }));
   if (cta.length !== 2) fail(`finale: expected 2 CTA buttons, found ${cta.length}`);
   for (const b of cta) {
     if (!b.visible) fail(`finale: CTA "${b.text}" not visible`);
     if (b.radius !== "0px") fail(`finale: CTA "${b.text}" has rounded corners (${b.radius})`);
     if (!/JetBrains Mono/i.test(b.font)) fail(`finale: CTA "${b.text}" is not set in the mono face (${b.font})`);
+    if (b.primary && b.color !== "rgb(12, 10, 8)") fail(`finale: primary CTA label is not ground on ember (${b.color})`);
   }
   const copyOp = await page.evaluate(() => getComputedStyle(document.querySelectorAll(".sw-copy")[3]).opacity);
   if (Number(copyOp) < 0.95) fail(`finale: scene 4 copy not held (opacity ${copyOp})`);
