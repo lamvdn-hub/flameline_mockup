@@ -1,0 +1,430 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-27T12:40:00Z",
+  "title": "Design System: Flameline",
+  "extensions": {
+    "colorMeta": {
+      "ember": {
+        "role": "primary",
+        "displayName": "Ember",
+        "canonical": "oklch(70.9% 0.115 59.3)",
+        "hex": "#d49152",
+        "tonalRamp": [
+          "#160700",
+          "#3c1b00",
+          "#663200",
+          "#904e04",
+          "#b47033",
+          "#da9357",
+          "#f4bc91",
+          "#fcebde"
+        ]
+      },
+      "amber": {
+        "role": "primary",
+        "displayName": "Amber",
+        "canonical": "oklch(79.8% 0.109 70.8)",
+        "hex": "#e7b46a",
+        "tonalRamp": [
+          "#140800",
+          "#381e00",
+          "#603700",
+          "#875400",
+          "#ab762e",
+          "#d09953",
+          "#ebc18f",
+          "#faecdd"
+        ]
+      },
+      "bronze": {
+        "role": "primary",
+        "displayName": "Bronze",
+        "canonical": "oklch(69.6% 0.075 70.1)",
+        "hex": "#b89968",
+        "tonalRamp": [
+          "#120902",
+          "#33210b",
+          "#573c19",
+          "#7c592e",
+          "#9f7b4f",
+          "#c49d71",
+          "#e1c4a2",
+          "#f6ede3"
+        ]
+      },
+      "oxblood": {
+        "role": "tertiary",
+        "displayName": "Oxblood",
+        "canonical": "oklch(43.5% 0.132 29.8)",
+        "hex": "#8b2d20",
+        "tonalRamp": [
+          "#190403",
+          "#41150f",
+          "#6e2820",
+          "#9a4236",
+          "#c06456",
+          "#e68778",
+          "#feb4a7",
+          "#ffe8e4"
+        ]
+      },
+      "ground": {
+        "role": "neutral",
+        "displayName": "Ground",
+        "canonical": "oklch(14.5% 0.007 32.8)",
+        "hex": "#0c0a08",
+        "tonalRamp": [
+          "#0c0b0a",
+          "#272424",
+          "#454140",
+          "#65605e",
+          "#87817f",
+          "#a9a3a2",
+          "#cdc8c7",
+          "#efeeee"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Panel",
+        "canonical": "oklch(17.9% 0.010 35.0)",
+        "hex": "#14110e",
+        "tonalRamp": [
+          "#0c0b0a",
+          "#282423",
+          "#46413f",
+          "#675f5d",
+          "#88807e",
+          "#aba3a1",
+          "#cec7c6",
+          "#f0eeed"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line",
+        "canonical": "oklch(31.8% 0.021 36.5)",
+        "hex": "#3a312a",
+        "tonalRamp": [
+          "#0e0a09",
+          "#2b2321",
+          "#4b3f3b",
+          "#6d5d59",
+          "#8f7e79",
+          "#b2a19c",
+          "#d3c6c2",
+          "#f2edec"
+        ]
+      },
+      "cream": {
+        "role": "neutral",
+        "displayName": "Cream",
+        "canonical": "oklch(90.5% 0.032 22.1)",
+        "hex": "#e9e2d3",
+        "tonalRamp": [
+          "#0f0909",
+          "#2e2221",
+          "#503c3b",
+          "#735a59",
+          "#957b7a",
+          "#b99e9c",
+          "#d9c3c2",
+          "#f3edec"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "canonical": "oklch(79.9% 0.035 48.0)",
+        "hex": "#c9bfa8",
+        "tonalRamp": [
+          "#0f0a07",
+          "#2e221c",
+          "#503d34",
+          "#735c50",
+          "#957c70",
+          "#b89f92",
+          "#d8c4bb",
+          "#f3edea"
+        ]
+      },
+      "dim": {
+        "role": "neutral",
+        "displayName": "Dim",
+        "canonical": "oklch(50.2% 0.033 58.1)",
+        "hex": "#6f6350",
+        "tonalRamp": [
+          "#0f0a07",
+          "#2c231c",
+          "#4e3f33",
+          "#705d4f",
+          "#927e6f",
+          "#b6a091",
+          "#d6c6ba",
+          "#f3edea"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The film's per-scene headline and the no-JS fallback hero; one italic ember word."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section heads (34px), events teaser (40px), trade band (32px); 400 weight, italic ember emphasis at 300."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Pathway card titles; package names at 20px."
+      },
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "Flameline in the nav (22px) and footer (19px); the only brand setting."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running copy at 16px base; film body clamp(1rem, 1.25vw, 1.14rem)."
+      },
+      "body-small": {
+        "displayName": "Body Small",
+        "purpose": "Section and card copy, 13.5 to 14.5px at 1.6 to 1.7 line-height, in muted."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Kickers, eyebrows, counters, section numbers (11px ember), image-slot labels."
+      },
+      "label-tight": {
+        "displayName": "Label Tight",
+        "purpose": "Nav links, tags, card CTAs, rail labels, buttons (11px), footer meta (9.5px)."
+      }
+    },
+    "shadows": [
+      {
+        "name": "display-glow",
+        "value": "0 2px 24px color-mix(in srgb, var(--sw-bg) 70%, transparent)",
+        "purpose": "text-shadow under the film headline only."
+      },
+      {
+        "name": "body-glow",
+        "value": "0 1px 12px color-mix(in srgb, var(--sw-bg) 90%, transparent)",
+        "purpose": "text-shadow under the film body only."
+      },
+      {
+        "name": "active-dot-halo",
+        "value": "0 0 0 5px color-mix(in srgb, var(--sw-accent) 22%, transparent)",
+        "purpose": "The route rail's active dot; the only box-shadow in the build."
+      }
+    ],
+    "motion": [
+      {
+        "name": "film-scrub",
+        "value": "scroll-positioned; diveScroll 1.4vh per scene (field 1.7, light 1.8); crossfade 0.08vh; linger 0.25 to 0.45",
+        "purpose": "The one authored motion: scroll drives the camera, nothing runs on time."
+      },
+      {
+        "name": "nav-solid",
+        "value": "background-color 300ms ease",
+        "purpose": "Nav goes from 82% translucent ground to solid ground once the hero leaves the viewport."
+      },
+      {
+        "name": "state-fade",
+        "value": "background, border-color, color 200ms (page) / 250ms (film)",
+        "purpose": "Every hover on buttons, links, cards and nav items."
+      },
+      {
+        "name": "chrome-fade",
+        "value": "opacity 300ms",
+        "purpose": "Route rail, scroll hint and copy gradient fade out at the film's end."
+      },
+      {
+        "name": "dot-state",
+        "value": "transform, background, box-shadow 300ms",
+        "purpose": "Route dot hover (1.25x) and active (1.4x); the only transform in the world."
+      },
+      {
+        "name": "hint-wheel",
+        "value": "sw-wheel 1.7s ease-in-out infinite",
+        "purpose": "The scroll hint's ember wheel; stopped under prefers-reduced-motion."
+      },
+      {
+        "name": "grain",
+        "value": "body::before fixed SVG feTurbulence baseFrequency 0.9, 2 octaves; opacity 0.5; mix-blend-mode overlay; z-index 9999",
+        "purpose": "Static film grain over the entire page; not animated."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone-gutter",
+        "value": "640px"
+      },
+      {
+        "name": "collapse",
+        "value": "860px"
+      },
+      {
+        "name": "container",
+        "value": "1180px"
+      }
+    ],
+    "engineTheme": {
+      "--sw-bg": "var(--ground)",
+      "--sw-ink": "var(--cream)",
+      "--sw-ink-soft": "var(--muted)",
+      "--sw-accent": "var(--ember)",
+      "--sw-font-display": "var(--font-display)",
+      "--sw-font-body": "var(--font-body)",
+      "--sw-font-mono": "var(--font-mono)"
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ember fill, ground label; the one filled control per viewport (trade portal, film CTA).",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Enter the portal →</a>",
+      "css": ".ds-btn-primary{display:inline-block;font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-weight:400;text-transform:uppercase;font-size:11px;letter-spacing:.18em;padding:15px 26px;border-radius:0;background:var(--ember,#d49152);color:var(--ground,#0c0a08);text-decoration:none;transition:background .2s,color .2s}.ds-btn-primary:hover{background:var(--amber,#e7b46a)}.ds-btn-primary:focus-visible{outline:1px solid var(--amber,#e7b46a);outline-offset:3px}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Bronze hairline, amber label; fills ember on hover. Secondary CTA and the nav's B2B login.",
+      "html": "<a class=\"ds-btn-outline\" href=\"#\">See event packages</a>",
+      "css": ".ds-btn-outline{display:inline-block;font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-weight:400;text-transform:uppercase;font-size:11px;letter-spacing:.18em;padding:15px 26px;border-radius:0;border:1px solid var(--bronze,#b89968);color:var(--amber,#e7b46a);background:transparent;text-decoration:none;transition:background .2s,border-color .2s,color .2s}.ds-btn-outline:hover{background:var(--ember,#d49152);border-color:var(--ember,#d49152);color:var(--ground,#0c0a08)}.ds-btn-outline:focus-visible{outline:1px solid var(--amber,#e7b46a);outline-offset:3px}"
+    },
+    {
+      "name": "Film Ghost Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "The scroll film's secondary CTA: cream label on a 25% cream hairline, hovers to ember.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">B2B partner login</a>",
+      "css": ".ds-btn-ghost{display:inline-block;font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-weight:400;text-transform:uppercase;font-size:11px;letter-spacing:.18em;padding:15px 24px;border-radius:0;color:var(--cream,#e9e2d3);border:1px solid rgba(233,226,211,.25);background:transparent;text-decoration:none;transition:border-color .25s,color .25s}.ds-btn-ghost:hover{border-color:var(--ember,#d49152);color:var(--ember,#d49152)}.ds-btn-ghost:focus-visible{outline:1px solid var(--amber,#e7b46a);outline-offset:3px}"
+    },
+    {
+      "name": "Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Informational mono tag under scene copy; hairline box, no selected state.",
+      "html": "<ul class=\"ds-tags\"><li>Horacio · Barreda</li><li>Estelí · Jalapa · Ometepe</li></ul>",
+      "css": ".ds-tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0}.ds-tags li{font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-weight:400;text-transform:uppercase;font-size:10px;letter-spacing:.18em;color:var(--muted,#c9bfa8);padding:8px 12px;border-radius:0;background:rgba(12,10,8,.7);border:1px solid rgba(233,226,211,.22)}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Fixed hairline bar: Cormorant wordmark in amber, mono links in muted, outline B2B button. Translucent over the film, solid ground after.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-nav__brand\" href=\"#\">Flameline</a><nav class=\"ds-nav__links\"><a class=\"ds-nav__link\" href=\"#\">Home</a><a class=\"ds-nav__link\" href=\"#\">Events</a><a class=\"ds-nav__link\" href=\"#\">The Experience</a><a class=\"ds-nav__link\" href=\"#\">Brands</a><a class=\"ds-nav__b2b\" href=\"#\">B2B Login</a></nav></header>",
+      "css": ".ds-nav{display:flex;align-items:center;justify-content:space-between;gap:24px;height:68px;padding:0 32px;background:rgba(12,10,8,.82);backdrop-filter:blur(8px);border-bottom:1px solid var(--line,#3a312a)}.ds-nav__brand{font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-weight:500;font-size:22px;letter-spacing:.26em;text-transform:uppercase;color:var(--amber,#e7b46a);text-decoration:none}.ds-nav__brand:hover{color:var(--cream,#e9e2d3)}.ds-nav__links{display:flex;align-items:center;gap:4px}.ds-nav__link{font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-weight:400;text-transform:uppercase;font-size:10px;letter-spacing:.18em;color:var(--muted,#c9bfa8);padding:24px 14px 22px;border-bottom:2px solid transparent;text-decoration:none;transition:color .2s}.ds-nav__link:hover{color:var(--amber,#e7b46a)}.ds-nav__b2b{margin-left:14px;font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-weight:400;text-transform:uppercase;font-size:10px;letter-spacing:.18em;border:1px solid var(--bronze,#b89968);color:var(--amber,#e7b46a);padding:9px 16px;border-radius:0;text-decoration:none;transition:background .2s,border-color .2s,color .2s}.ds-nav__b2b:hover{background:var(--ember,#d49152);border-color:var(--ember,#d49152);color:var(--ground,#0c0a08)}.ds-nav__link:focus-visible,.ds-nav__b2b:focus-visible,.ds-nav__brand:focus-visible{outline:1px solid var(--amber,#e7b46a);outline-offset:3px}"
+    },
+    {
+      "name": "Pathway Card",
+      "kind": "card",
+      "refersTo": "card-pathway",
+      "description": "Panel card with hairline border; whole card is the link, hover moves the border to bronze and nothing else.",
+      "html": "<a class=\"ds-pathway\" href=\"#\"><span class=\"ds-pathway__kicker\">The portfolio</span><span class=\"ds-pathway__title\">Horacio &amp; Barreda</span><p class=\"ds-pathway__body\">Two Nicaraguan-rooted houses we carry: flavor profiles, key lines and what makes each worth shelf space.</p><span class=\"ds-pathway__cta\">Meet the brands →</span></a>",
+      "css": ".ds-pathway{display:flex;flex-direction:column;max-width:360px;border:1px solid var(--line,#3a312a);background:var(--panel,#14110e);padding:30px 26px;color:var(--cream,#e9e2d3);text-decoration:none;border-radius:0;transition:border-color .25s}.ds-pathway:hover{border-color:var(--bronze,#b89968)}.ds-pathway:focus-visible{outline:1px solid var(--amber,#e7b46a);outline-offset:3px}.ds-pathway__kicker{font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-weight:400;text-transform:uppercase;font-size:10px;letter-spacing:.2em;color:var(--ember,#d49152);margin-bottom:14px}.ds-pathway__title{font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-weight:400;font-size:24px;line-height:1.2;margin-bottom:10px}.ds-pathway__body{font-family:var(--font-body,'Inter Tight',system-ui,sans-serif);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--muted,#c9bfa8);margin:0}.ds-pathway__cta{margin-top:auto;padding-top:18px;font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-weight:400;text-transform:uppercase;font-size:10px;letter-spacing:.18em;color:var(--amber,#e7b46a)}"
+    },
+    {
+      "name": "Package List",
+      "kind": "custom",
+      "refersTo": "package-row",
+      "description": "Ruled list: ground rows on a Line background with 1px gaps; serif name against a mono level on one baseline.",
+      "html": "<ul class=\"ds-packages\"><li class=\"ds-packages__row\"><span class=\"ds-packages__name\">01 · The Discovery</span><span class=\"ds-packages__level\">Beginners</span></li><li class=\"ds-packages__row\"><span class=\"ds-packages__name\">02 · The Signature</span><span class=\"ds-packages__level\">Enthusiasts</span></li><li class=\"ds-packages__row\"><span class=\"ds-packages__name\">03 · The Reserve</span><span class=\"ds-packages__level\">Aficionados</span></li></ul>",
+      "css": ".ds-packages{list-style:none;margin:0;padding:0;display:grid;gap:1px;background:var(--line,#3a312a);border:1px solid var(--line,#3a312a);max-width:480px}.ds-packages__row{background:var(--ground,#0c0a08);padding:18px 22px;display:flex;justify-content:space-between;align-items:baseline;gap:16px;color:var(--cream,#e9e2d3)}.ds-packages__name{font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-weight:400;font-size:20px}.ds-packages__level{font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-weight:400;text-transform:uppercase;font-size:10px;letter-spacing:.14em;color:var(--muted,#c9bfa8)}"
+    },
+    {
+      "name": "Section Head",
+      "kind": "custom",
+      "refersTo": "headline",
+      "description": "Numbered section head: ember mono number, Cormorant headline with one italic ember word, a flexed hairline to the edge.",
+      "html": "<div class=\"ds-section-head\"><span class=\"ds-section-head__num\">01</span><h2 class=\"ds-section-head__title\">Three ways <em>in</em></h2><span class=\"ds-section-head__rule\"></span></div>",
+      "css": ".ds-section-head{display:flex;align-items:baseline;gap:18px;min-width:420px}.ds-section-head__num{font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-weight:400;text-transform:uppercase;font-size:11px;letter-spacing:.22em;color:var(--ember,#d49152)}.ds-section-head__title{font-family:var(--font-display,'Cormorant Garamond',Georgia,serif);font-weight:400;font-size:34px;line-height:1.05;color:var(--cream,#e9e2d3);margin:0;text-wrap:balance}.ds-section-head__title em{font-style:italic;font-weight:300;color:var(--ember,#d49152)}.ds-section-head__rule{flex:1;height:1px;background:var(--line,#3a312a)}"
+    },
+    {
+      "name": "Image Slot",
+      "kind": "custom",
+      "refersTo": "image-slot",
+      "description": "Placeholder for client photography: dashed hairline, faint hatch, dim mono label. Placeholder grade by spec.",
+      "html": "<div class=\"ds-image-slot\" role=\"img\" aria-label=\"Lounge photo placeholder\"><span>Lounge photo</span></div>",
+      "css": ".ds-image-slot{width:100%;max-width:480px;aspect-ratio:16/9;display:grid;place-items:center;border:1px dashed var(--line,#3a312a);background:repeating-linear-gradient(135deg,transparent 0 14px,rgba(58,49,42,.25) 14px 15px);color:var(--dim,#6f6350);border-radius:0}.ds-image-slot span{font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-weight:400;text-transform:uppercase;font-size:10.5px;letter-spacing:.22em}"
+    },
+    {
+      "name": "Route Rail",
+      "kind": "nav",
+      "refersTo": "label-tight",
+      "description": "The film's four ember dots with hairlined mono labels; active dot fills, scales 1.4x and gains a 22% ember halo.",
+      "html": "<div class=\"ds-route\"><button class=\"ds-route__dot is-active\"><i></i><span class=\"ds-route__label\">The leaf</span></button><button class=\"ds-route__dot\"><i></i><span class=\"ds-route__label\">The hand</span></button><button class=\"ds-route__dot\"><i></i><span class=\"ds-route__label\">The house</span></button><button class=\"ds-route__dot\"><i></i><span class=\"ds-route__label\">The light</span></button></div>",
+      "css": ".ds-route{position:relative;display:flex;flex-direction:column;gap:22px;padding:18px 10px;width:max-content;margin-left:140px}.ds-route::before{content:\"\";position:absolute;left:50%;top:22px;bottom:22px;width:2px;transform:translateX(-50%);background:var(--ember,#d49152);opacity:.28}.ds-route__dot{position:relative;border:0;background:transparent;cursor:pointer;width:14px;height:14px;display:grid;place-items:center;padding:0}.ds-route__dot i{width:9px;height:9px;border-radius:50%;background:rgba(212,145,82,.4);transition:transform .3s,background .3s,box-shadow .3s}.ds-route__dot:hover i{transform:scale(1.25);background:var(--ember,#d49152)}.ds-route__dot.is-active i{background:var(--ember,#d49152);transform:scale(1.4);box-shadow:0 0 0 5px rgba(212,145,82,.22)}.ds-route__label{position:absolute;right:24px;top:50%;transform:translateY(-50%) translateX(6px);white-space:nowrap;font-family:var(--font-mono,'JetBrains Mono',ui-monospace,monospace);font-weight:400;text-transform:uppercase;font-size:10px;letter-spacing:.18em;color:var(--cream,#e9e2d3);background:rgba(12,10,8,.85);padding:6px 11px;border-radius:0;border:1px solid rgba(212,145,82,.14);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}.ds-route__dot:hover .ds-route__label,.ds-route__dot.is-active .ds-route__label{opacity:1;transform:translateY(-50%) translateX(0)}.ds-route__dot:focus-visible{outline:1px solid var(--amber,#e7b46a);outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Single Ember",
+    "overview": "A dark room lit by one flame. Everything in the world is either the near-black ground the room is made of, the cream and parchment the light falls on, or the ember itself. The page is a photoreal camera flight, an Estelí tobacco field to a cigar catching from a lighter, and scroll is the only thing that moves the camera. Chrome stays out of the way: a fixed hairline nav, a rail of four ember dots, a mono scroll hint. Nothing else animates, nothing floats, nothing lifts.\n\nDensity is low and unhurried. Copy sits in a single 42vw column pinned to the left of the film, one headline and one sentence per scene, tags in tracked mono underneath. The body sections beneath the film keep the same restraint: a numbered section head with a hairline rule, a three-card row on panel, one two-column teaser, one trade band, a footer. The build ships these body sections at placeholder grade (lorem ipsum, dashed image slots awaiting client photography); their structure and tokens are the system, their copy and imagery are not.\n\nMaterials are filmic rather than digital: a fine SVG turbulence grain overlays the whole page at 50% overlay blend, display type is a light-weight Garamond with one italic ember word per headline, all rules are 1px hairlines, all corners are square. The category default (hero grid, at-a-glance card, three feature tiles with icons) is rejected in favour of one continuous shot.",
+    "keyCharacteristics": [
+      "One key light: ember (#d49152) is the only saturated colour on any screen; amber is its highlight, bronze its resting stroke.",
+      "Near-black ground (#0c0a08) with a single panel step (#14110e) and 1px hairlines (#3a312a) for all structure.",
+      "Cormorant Garamond at weight 300 for display, weight 400 for section headlines, with one italic ember word for emphasis.",
+      "JetBrains Mono for every label, tag, nav item and button: 10 to 11px, uppercase, tracked 0.18 to 0.22em.",
+      "Square corners everywhere; the only curves are the 9px route dots and the drawn scroll-hint mouse.",
+      "Motion is scroll: the film scrubs with the scrollbar, and every other state change is a 200 to 300ms colour or opacity fade.",
+      "Fine film grain over everything (body::before, fractalNoise, 50% opacity, overlay blend)."
+    ],
+    "rules": [
+      {
+        "name": "The Single Ember Rule",
+        "body": "Ember is the only saturated colour on a screen and it lands on small things: one italic word, a 10px label, a 9px dot, one button fill. If ember is on more than roughly a tenth of a viewport, the scene has two lights and the rule is broken.",
+        "section": "colors"
+      },
+      {
+        "name": "The Warm Derivative Rule",
+        "body": "Interactive states move within the ember family only: rest in bronze, hover to amber or ember, never to a new hue. Links are amber at rest and underline on hover; they do not change colour.",
+        "section": "colors"
+      },
+      {
+        "name": "The Oxblood Reserve Rule",
+        "body": "Oxblood appears only where the law or the language asks for it (the health warning, a typographic ampersand). It is never a call to action, a badge or a hover state.",
+        "section": "colors"
+      },
+      {
+        "name": "The Light Display Rule",
+        "body": "Headlines are Cormorant Garamond at 300 (display) or 400 (section), tracked -0.02em at display size, line-height at or under 1.05, with exactly one italic ember word. No bold weights, no all-caps headlines, no system serif fallback in shipped markup.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tracked Plate Rule",
+        "body": "Anything that names, numbers or navigates is JetBrains Mono 10 to 11px, uppercase, tracked 0.18 to 0.22em, weight 400, in muted, ember or amber. Never in the serif, never in the sans, never below 9.5px.",
+        "section": "typography"
+      },
+      {
+        "name": "The No-Lift Rule",
+        "body": "Surfaces never lift. Hover changes a border colour or a fill, never adds a shadow, a translate or a scale. A card that rises on hover is outside the world.",
+        "section": "elevation"
+      },
+      {
+        "name": "The One Exposure Rule",
+        "body": "The grain overlay stays fixed over the whole page at 50% opacity, overlay blend. Nothing renders above it; nothing is exempt from it.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** keep ember (#d49152) to small emphasis: one italic word per headline, mono labels, a 9px dot, one button fill per viewport.",
+      "**Do** set every headline in Cormorant Garamond at 300 or 400 with `letter-spacing: -0.02em` at display size and line-height at or under 1.05.",
+      "**Do** set every label, tag, nav item and button in JetBrains Mono, 10 to 11px, uppercase, tracked 0.18 to 0.22em, weight 400.",
+      "**Do** draw all structure with 1px hairlines in Line (#3a312a) and step surfaces only between ground (#0c0a08) and panel (#14110e).",
+      "**Do** keep hover to a colour change within the ember family (bronze to ember, muted to amber) over 200 to 250ms.",
+      "**Do** leave the grain overlay in place over every new surface.",
+      "**Do** keep the body's 1180px container with 32px gutters (16px under 640px) and 72px section padding (56px under 860px)."
+    ],
+    "donts": [
+      "**Don't** add a second accent hue; oxblood (#8b2d20) is reserved for the health warning and a typographic ampersand.",
+      "**Don't** round a corner on any surface or control; `border-radius: 0` is the rule, and the route dots and hint mouse are the only exceptions.",
+      "**Don't** add box shadows, hover lifts, scale or bounce; the only transform in the world is the route dot's active state and the only shadows are the two text glows under film copy.",
+      "**Don't** animate anything on time. Scroll drives the film; every other change is a fade of 300ms or less. No scroll-reveal on body sections.",
+      "**Don't** set body or section copy above 16px or below 13.5px, or run a measure past 60ch.",
+      "**Don't** use a bold weight, an all-caps headline, or the sans or mono for a headline.",
+      "**Don't** ship the placeholder grade as final: lorem ipsum, dashed image slots and hatch fills are stand-ins for the client's copy and photography."
+    ]
+  }
+}
