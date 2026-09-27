@@ -10,7 +10,7 @@ import { postJson, getJson, requireEnv } from "./lib/http.mjs";
 import { KIE as KIE_BASE, downloadKieResult } from "./lib/kie.mjs";
 import { writeSidecar } from "./lib/sidecar.mjs";
 import { uploadPublic } from "./lib/upload.mjs";
-import { lastFrame } from "./lib/ffmpeg.mjs";
+import { ffmpeg, lastFrame, uploadScaleArgs } from "./lib/ffmpeg.mjs";
 import { legPlan } from "./lib/chain.mjs";
 import { parseArgs, SCENE_IDS } from "./lib/cli.mjs";
 
@@ -46,7 +46,10 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   for (const leg of plan.slice(from, to + 1)) {
     const prompt = promptForAttempt((await readFile(leg.prompt, "utf8")).trim(), attempt);
     console.log(`leg ${leg.index} ${leg.id}: start image ${leg.startImage} (attempt ${attempt})`);
-    const imageUrl = await uploadPublic(leg.startImage);
+    const uploadCopy = `generations/upload_${leg.id}.png`;
+    await ffmpeg(uploadScaleArgs(leg.startImage, uploadCopy));
+    const imageUrl = await uploadPublic(uploadCopy);
+    console.log(`  start image uploaded → ${imageUrl}`);
     const input = { prompt, image_urls: [imageUrl], duration: "10", aspect_ratio: "16:9", mode: "pro" };
     const created = await postJson(`${KIE}/createTask`, { model: MODEL, input }, { Authorization: `Bearer ${key}` });
     const taskId = created?.data?.taskId;

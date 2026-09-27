@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import { encodeArgs, posterArgs } from "../scripts/lib/ffmpeg.mjs";
+import { encodeArgs, posterArgs, uploadScaleArgs } from "../scripts/lib/ffmpeg.mjs";
 
 test("encodeArgs matches the spec", () => {
   expect(encodeArgs("a.mp4", "b.mp4").join(" ")).toBe(
@@ -9,4 +9,8 @@ test("encodeArgs matches the spec", () => {
 
 test("posterArgs", () => {
   expect(posterArgs("a.png", "a.webp").join(" ")).toBe("-y -i a.png -vf scale=1800:-2 -c:v libwebp -quality 84 a.webp");
+});
+
+test("uploadScaleArgs caps width at 1920 and keeps aspect", () => {
+  expect(uploadScaleArgs("a.png", "b.png").join(" ")).toBe("-y -i a.png -vf scale='min(1920,iw)':-2 b.png");
 });

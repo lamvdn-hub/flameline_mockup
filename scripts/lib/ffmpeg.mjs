@@ -30,3 +30,8 @@ export function encodeArgs(inPath, outPath) {
 export function posterArgs(pngPath, webpPath) {
   return ["-y", "-i", pngPath, "-vf", "scale=1800:-2", "-c:v", "libwebp", "-quality", "84", webpPath];
 }
+
+/** Start-image copy for the video model: at most 1920 px wide (Kling's image input is capped at 10 MB). Pure. */
+export function uploadScaleArgs(srcPath, dstPath) {
+  return ["-y", "-i", srcPath, "-vf", "scale='min(1920,iw)':-2", dstPath];
+}
