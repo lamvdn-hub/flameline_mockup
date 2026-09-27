@@ -1,0 +1,32 @@
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
+export const FFMPEG = process.env.FFMPEG || require("ffmpeg-static");
+const run = promisify(execFile);
+
+export async function ffmpeg(args) {
+  return run(FFMPEG, ["-v", "error", ...args], { maxBuffer: 1 << 26 });
+}
+
+/** The leg's last rendered frame: what the next leg starts from. */
+export async function lastFrame(videoPath, pngPath) {
+  await ffmpeg(["-y", "-sseof", "-0.15", "-i", videoPath, "-frames:v", "1", "-q:v", "2", pngPath]);
+  return pngPath;
+}
+
+export async function firstFrame(videoPath, pngPath) {
+  await ffmpeg(["-y", "-ss", "0", "-i", videoPath, "-frames:v", "1", "-q:v", "2", pngPath]);
+  return pngPath;
+}
+
+/** Scrub-friendly encode: native res, crf 20, GOP 8, light sharpen, no audio, faststart. Pure. */
+export function encodeArgs(inPath, outPath) {
+  return ["-y", "-i", inPath, "-an", "-vf", "unsharp=5:5:0.8:5:5:0.0", "-c:v", "libx264", "-preset", "slow", "-crf", "20", "-pix_fmt", "yuv420p", "-g", "8", "-keyint_min", "8", "-sc_threshold", "0", "-movflags", "+faststart", outPath];
+}
+
+/** Poster webp, 1800 px wide, quality 84. Pure. */
+export function posterArgs(pngPath, webpPath) {
+  return ["-y", "-i", pngPath, "-vf", "scale=1800:-2", "-c:v", "libwebp", "-quality", "84", webpPath];
+}

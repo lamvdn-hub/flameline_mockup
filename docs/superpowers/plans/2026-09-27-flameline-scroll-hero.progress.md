@@ -1,0 +1,25 @@
+# SDD ledger — plan: docs/superpowers/plans/2026-09-27-flameline-scroll-hero.md
+Ruling: no git worktree created — the session already runs on the dedicated feature branch claude/happy-archimedes-d9rbjf in an isolated cloud container; a worktree would add nothing — cost if wrong: none, branch is the isolation.
+Pre-flight (shared interfaces):
+- T2 -> T3: config.ts EngineConfig/EngineSection (titleHtml, no brand, nav:false, atmosphere:false) vs engine's expected config — engine must read titleHtml and tolerate missing brand: T3 modifications 3 and 4 cover it. Clean.
+- T2 -> T4: buildConfig(SCENES, manifest) and Manifest type consumed by HeroFilm; manifest.json initial `{stills:{},clips:{}}` matches Manifest with Partial records. Clean.
+- T3 -> T4: mountScrollWorld returns unmount; T4 adds container.replaceChildren() at top of mountScrollWorld to clear the SSR fallback. Ruling: put that replaceChildren into T3's implementation now (same file, avoids a second edit) — cost if wrong: none.
+- T6 -> T8/T9: legPlan fields {index,id,startImage,prompt,raw,lastFrame,encoded} consumed by gen-legs and encode. Clean.
+- T6 -> T7/T9: writeManifest(publicDir, sceneIds) consumed with literal id array. Clean.
+- T8 -> T9: encodeArgs/posterArgs from ffmpeg.mjs. Clean.
+- T1 test expects `--ember: #d49152` substring in out/index.html: globals.css must be inlined or the test must read the CSS chunk. Ruling: Next emits CSS as a separate file under out/_next/static/css; the test will check `out/index.html` for the contract and search `out/_next/static/css/*.css` for the token — cost if wrong: one test edit.
+Task 1: Ruling: build test searched out/_next/static/css but Next 16 emits CSS under out/_next/static/chunks — test now walks all .css under out/_next/static — cost if wrong: none, test only.
+Task 1: complete (commits 3a22dfa..e564460, tests: npm test -- tests/build.test.ts →    Duration  174ms (transform 55%, import 25%, tests 11%, worker 9%))
+Task 2: complete (commits e564460..60b10d5, tests: npm test →    Duration  204ms (transform 61%, import 25%, tests 8%, worker 6%))
+Task 3: complete (commits 60b10d5..81d1c3e, tests: npm test →    Duration  1.15s (environment 54%, tests 24%, transform 15%, import 6%, worker 1%))
+Task 4: Ruling: with only the film on the page, max scrollY equals the film's end so sw-ended (end + 0.5vh) is unreachable; added a 100vh placeholder section after the film that Task 5 replaces with the body sections — cost if wrong: none, removed in Task 5.
+Task 4: Ruling: engine token overrides moved from :root to .sw-root — the engine declares its defaults on .sw-root, and an element's own declaration beats an inherited :root value regardless of cascade layers — cost if wrong: none, CSS only. Ruling: smoke scrolls with behavior 'instant' because globals.css sets scroll-behavior smooth — cost if wrong: none.
+Task 4: complete (commits 81d1c3e..15689bf, tests: npm test →    Duration  1.08s (environment 57%, tests 25%, transform 13%, import 4%, worker 1%))
+Task 5: complete (commits 15689bf..86eb419, tests: npm test →    Duration  1.28s (environment 53%, tests 21%, transform 19%, import 5%, worker 1%))
+Task 6: complete (commits 86eb419..b8e5bcd, tests: npm test →    Duration  1.14s (environment 50%, tests 23%, transform 21%, import 4%, worker 2%))
+Task 7: Ruling: fal.run and api.kie.ai are denied by this container's network policy and FAL_KEY/KIE_API_KEY are absent (environment edited after container start). The code for Tasks 7, 8, 9 and 10 is written and unit-tested here; every paid or network step (T7 steps 1,3-7; T8 steps 2,4-5; T9 step 2 onward; T10 step 2) is deferred to a session started after the environment edit — cost if wrong: the new session re-verifies request schemas against live docs before the first paid call.
+Task 7: partial — code written and lint-clean (scripts/lib/http.mjs, sidecar.mjs, cli.mjs, scripts/gen-stills.mjs, prompts/models.md); dry run without FAL_KEY exits 3 with the expected message. Remaining in the next session: step 1 preflight, step 3 quote ($0.16 drafts) + go, step 4 draft run + inspection, step 5 quote finals + go + run (confirm the final model slug on fal.ai first), step 6 posters + manifest + build + smoke, step 7 commit.
+Task 8: partial — ffmpeg.mjs (lastFrame verified on a synthetic clip; encodeArgs/posterArgs tests green), upload.mjs, gen-legs.mjs written; dry run without KIE_API_KEY exits 3. Remaining: step 2 preflight (confirm fal storage upload endpoint with one free upload), step 4 quote ($17–37) + go, step 5 legs --from 0..3 with last-frame inspection between each, step 6 commit.
+Task 9: partial — encode.mjs written and verified end to end on a synthetic 2 s clip (1080p h264, no audio, manifest rewritten, outputs then deleted). Remaining: run on real legs, rebuild, smoke, commit.
+Task 10: partial — qa-seams.mjs written, wired as npm run qa, exits 4 until four clips exist. Remaining: run after Task 9, inspect seam pairs, commit.
+Task 11: not started (finish review, DESIGN.md, provenance, final push). Final whole-branch review runs after Task 11 in the next session.
