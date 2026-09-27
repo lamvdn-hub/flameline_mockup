@@ -123,8 +123,11 @@ test("seams dissolve over 0.4vh and the incoming scene's copy stays gated inside
   window.dispatchEvent(new Event("scroll"));
   await new Promise((r) => setTimeout(r, 20));
   const scenes = el.querySelectorAll<HTMLElement>(".sw-scene");
-  expect(Number(scenes[1].style.opacity)).toBeGreaterThan(0.3);   // outgoing still visible: a dissolve, not a cut
-  expect(Number(scenes[2].style.opacity)).toBe(1);
+  expect(Number(scenes[1].style.opacity)).toBeGreaterThan(0.9);   // outgoing holds underneath
+  const incoming = Number(scenes[2].style.opacity);              // incoming fades in ON TOP: a dissolve, not a cut
+  expect(incoming).toBeGreaterThan(0.2);
+  expect(incoming).toBeLessThan(0.8);
+  expect(Number(scenes[2].style.zIndex)).toBeGreaterThan(Number(scenes[1].style.zIndex));
   const copies = el.querySelectorAll<HTMLElement>(".sw-copy");
   expect(Number(copies[2].style.opacity)).toBeLessThan(0.05);
   expect(Number(copies[1].style.opacity)).toBe(0);
