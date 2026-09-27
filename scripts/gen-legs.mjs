@@ -50,7 +50,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     await ffmpeg(uploadScaleArgs(leg.startImage, uploadCopy));
     const imageUrl = await uploadPublic(uploadCopy);
     console.log(`  start image uploaded → ${imageUrl}`);
-    const input = { prompt, image_urls: [imageUrl], duration: "10", aspect_ratio: "16:9", mode: "pro" };
+    const input = { prompt, image_urls: [imageUrl], duration: "10", aspect_ratio: "16:9", mode: "pro", multi_shots: false, sound: false };
     const created = await postJson(`${KIE}/createTask`, { model: MODEL, input }, { Authorization: `Bearer ${key}` });
     const taskId = created?.data?.taskId;
     if (!taskId) throw new Error(`no taskId: ${JSON.stringify(created).slice(0, 300)}`);
