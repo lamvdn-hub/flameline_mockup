@@ -1,0 +1,18 @@
+{
+  "model": "kling-3.0/video",
+  "prompt": "Single continuous cinematic camera move, no cuts. Continue the same slow, steady forward glide. Gliding steadily forward across the dark panelled lounge, between the two leather club chairs, toward the open glass doors of the walk-in humidor, then rising in a slow, gentle crane-up as the lit Spanish cedar shelves fill the frame. The camera moves into the walk-in humidor, an enclosed room inside the lounge with walls on every side. The small round side table between the chairs holds only the brass reading lamp; no cigar, no flame, no candle, no ashtray, nothing lying on the table. In the final second, settle back into a slow, steady forward glide toward the brass reading lamp on the side table. Ultra-photorealistic cinematic photograph, anamorphic 35mm lens, deep near-black shadows, a single warm ember-amber key light, low golden-hour sun, rich tobacco-brown and dark-cedar palette with shadows near #0c0a08 and highlights near #d49152 and #e7b46a, fine film grain. Smooth, graceful, slow motion, subtle parallax. No text, no captions.",
+  "refs": [
+    "generations/still_humidor.png"
+  ],
+  "params": {
+    "prompt": "Single continuous cinematic camera move, no cuts. Continue the same slow, steady forward glide. Gliding steadily forward across the dark panelled lounge, between the two leather club chairs, toward the open glass doors of the walk-in humidor, then rising in a slow, gentle crane-up as the lit Spanish cedar shelves fill the frame. The camera moves into the walk-in humidor, an enclosed room inside the lounge with walls on every side. The small round side table between the chairs holds only the brass reading lamp; no cigar, no flame, no candle, no ashtray, nothing lying on the table. In the final second, settle back into a slow, steady forward glide toward the brass reading lamp on the side table. Ultra-photorealistic cinematic photograph, anamorphic 35mm lens, deep near-black shadows, a single warm ember-amber key light, low golden-hour sun, rich tobacco-brown and dark-cedar palette with shadows near #0c0a08 and highlights near #d49152 and #e7b46a, fine film grain. Smooth, graceful, slow motion, subtle parallax. No text, no captions.",
+    "duration": "10",
+    "aspect_ratio": "16:9",
+    "mode": "pro",
+    "multi_shots": false,
+    "sound": false,
+    "attempt": 1,
+    "taskId": "d9d31513cc54a573a761d39c68fc62eb"
+  },
+  "created": "2026-09-27T14:37:20.597Z"
+}
