@@ -17,3 +17,10 @@ test("demo sections mark every client photograph the brief promises: brand, prod
   expect(html).toContain('href="#brands"');   // nav and pathway card point at the brands section
   expect(html).not.toMatch(/Founder<\/span>\s*<[^>]*>\s*[A-Z][a-z]+ [A-Z][a-z]+/); // no fabricated founder name
 });
+
+test("every content paragraph in the body is lorem ipsum", () => {
+  const html = readFileSync("out/index.html", "utf8");
+  const paras = [...html.matchAll(/class="(?:pathway__body|events__body|trade__body|brand__body|house__body|section-lead)"[^>]*>([^<]*)/g)].map((m) => m[1].trim());
+  expect(paras.length).toBeGreaterThanOrEqual(8);
+  for (const p of paras) expect(p).toMatch(/^Lorem ipsum/);
+});

@@ -40,3 +40,7 @@ test("buildConfig omits clip when missing and falls back to placeholder still", 
   expect(cfg.sections[3]).toMatchObject({ scroll: 1.8, linger: 0.45 });
   expect(cfg.sections.every((s) => s.accent === "#d49152")).toBe(true);
 });
+
+test("every scene body is lorem ipsum (demo copy only)", () => {
+  for (const s of SCENES) expect(s.body).toMatch(/^Lorem ipsum/);
+});
