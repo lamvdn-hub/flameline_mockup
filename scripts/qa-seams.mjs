@@ -92,6 +92,23 @@ const server = await serveStatic(root, PORT);
   const ratio = await page.evaluate(() => { const v = document.querySelectorAll(".sw-scene__video")[1]; return v ? v.currentTime / v.duration : -1; });
   if (ratio < 0.4 || ratio > 0.6) fail(`scrub does not track scroll: section 1 at mid-leg is ${ratio.toFixed(2)} of duration`);
 
+  // finale: scene 4 at 70% of its leg, copy held, the CTA pair in the world's treatment
+  const finaleY = (SCROLLS[0] + SCROLLS[1] + SCROLLS[2]) * VH + 0.7 * SCROLLS[3] * VH;
+  await at(page, finaleY); if (!(await settle(page))) fail("finale: clips still seeking after 15 s");
+  const cta = await page.evaluate(() => [...document.querySelectorAll(".sw-btn")].map((b) => {
+    const cs = getComputedStyle(b); const r = b.getBoundingClientRect();
+    return { text: b.textContent, visible: r.width > 0 && r.height > 0 && cs.opacity !== "0", radius: cs.borderRadius, font: cs.fontFamily, href: b.getAttribute("href") };
+  }));
+  if (cta.length !== 2) fail(`finale: expected 2 CTA buttons, found ${cta.length}`);
+  for (const b of cta) {
+    if (!b.visible) fail(`finale: CTA "${b.text}" not visible`);
+    if (b.radius !== "0px") fail(`finale: CTA "${b.text}" has rounded corners (${b.radius})`);
+    if (!/JetBrains Mono/i.test(b.font)) fail(`finale: CTA "${b.text}" is not set in the mono face (${b.font})`);
+  }
+  const copyOp = await page.evaluate(() => getComputedStyle(document.querySelectorAll(".sw-copy")[3]).opacity);
+  if (Number(copyOp) < 0.95) fail(`finale: scene 4 copy not held (opacity ${copyOp})`);
+  await page.screenshot({ path: ".impeccable/review/finale.png" });
+
   await at(page, 0); await settle(page);
   await page.screenshot({ path: ".impeccable/review/desktop.png" });
   await page.screenshot({ path: ".impeccable/review/hero-repro.png" });

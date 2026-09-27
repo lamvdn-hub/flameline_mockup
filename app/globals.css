@@ -239,6 +239,10 @@ p {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
+  transition: background-color 300ms ease;
+}
+.nav--solid {
+  background: var(--ground);
 }
 .nav__inner {
   max-width: var(--container);

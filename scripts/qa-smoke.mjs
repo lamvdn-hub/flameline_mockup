@@ -63,6 +63,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   }
   const ended = await page.evaluate(() => !!document.querySelector(".sw-root")?.classList.contains("sw-ended"));
   if (!ended) fail("sw-ended not set after scrolling to the bottom");
+  await page.waitForTimeout(400);
+  const navBg = await page.evaluate(() => getComputedStyle(document.querySelector(".nav")).backgroundColor);
+  if (navBg !== "rgb(12, 10, 8)") fail(`nav ground over the body is not solid: ${navBg}`);
   await page.screenshot({ path: ".impeccable/review/desktop-end.png", fullPage: false });
 
   if (errors.length) fail(`console errors:\n${errors.join("\n")}`);
