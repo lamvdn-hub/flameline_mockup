@@ -106,9 +106,20 @@ const server = await serveStatic(root, PORT);
     if (!/JetBrains Mono/i.test(b.font)) fail(`finale: CTA "${b.text}" is not set in the mono face (${b.font})`);
     if (b.primary && b.color !== "rgb(12, 10, 8)") fail(`finale: primary CTA label is not ground on ember (${b.color})`);
   }
+  // copy placement: at the finale (tallest block, CTA pair) and at the end of scene 3,
+  // the copy must clear the bottom of the viewport by a tenth and sit below the nav.
+  const copyBox = async (i) => page.evaluate((i) => { const r = document.querySelectorAll(".sw-copy")[i].getBoundingClientRect(); return { top: r.top, bottom: r.bottom }; }, i);
+  const finaleBox = await copyBox(3);
+  if (finaleBox.bottom > VH * 0.9) fail(`finale copy too low: bottom at ${Math.round(finaleBox.bottom)} of ${VH}`);
+  if (finaleBox.top < 68) fail(`finale copy under the nav: top at ${Math.round(finaleBox.top)}`);
   const copyOp = await page.evaluate(() => getComputedStyle(document.querySelectorAll(".sw-copy")[3]).opacity);
   if (Number(copyOp) < 0.95) fail(`finale: scene 4 copy not held (opacity ${copyOp})`);
   await page.screenshot({ path: ".impeccable/review/finale.png" });
+  const endOf3 = (SCROLLS[0] + SCROLLS[1]) * VH + 0.95 * SCROLLS[2] * VH;
+  await at(page, endOf3); if (!(await settle(page))) fail("end of scene 3: clips still seeking after 15 s");
+  const box3 = await copyBox(2);
+  if (box3.bottom > VH * 0.9) fail(`scene 3 copy too low near its end: bottom at ${Math.round(box3.bottom)} of ${VH}`);
+  await page.screenshot({ path: ".impeccable/review/scene3-end.png" });
 
   // after the film: the body must PAINT above the held last frame. Hit-testing
   // cannot see this (the stage is pointer-events:none), so measure the pixels:
