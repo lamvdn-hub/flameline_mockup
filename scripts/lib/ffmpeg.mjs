@@ -35,3 +35,13 @@ export function posterArgs(pngPath, webpPath) {
 export function uploadScaleArgs(srcPath, dstPath) {
   return ["-y", "-i", srcPath, "-vf", "scale='min(1920,iw)':-2", dstPath];
 }
+
+/**
+ * QA-only transcode: Playwright's open-source Chromium has no H.264 decoder, so
+ * the seam QA re-encodes a scratch copy of the export's clips to VP9 (which it
+ * does decode) with the same GOP, and tests the real page against that copy.
+ * Shipping assets stay H.264. Pure.
+ */
+export function vp9ShimArgs(inPath, outPath) {
+  return ["-y", "-i", inPath, "-an", "-c:v", "libvpx-vp9", "-deadline", "realtime", "-cpu-used", "8", "-crf", "30", "-b:v", "0", "-g", "8", "-keyint_min", "8", "-pix_fmt", "yuv420p", outPath];
+}
