@@ -5,5 +5,10 @@
     "humidor": "/assets/stills/humidor.webp",
     "light": "/assets/stills/light.webp"
   },
-  "clips": {}
+  "clips": {
+    "field": "/assets/vid/field.mp4",
+    "gallery": "/assets/vid/gallery.mp4",
+    "humidor": "/assets/vid/humidor.mp4",
+    "light": "/assets/vid/light.mp4"
+  }
 }
