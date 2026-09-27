@@ -110,6 +110,19 @@ const server = await serveStatic(root, PORT);
   if (Number(copyOp) < 0.95) fail(`finale: scene 4 copy not held (opacity ${copyOp})`);
   await page.screenshot({ path: ".impeccable/review/finale.png" });
 
+  // after the film: the body must PAINT above the held last frame. Hit-testing
+  // cannot see this (the stage is pointer-events:none), so measure the pixels:
+  // the body region must be near-black ground, not the bright resting frame.
+  const pastY = SCROLLS.reduce((a, b) => a + b, 0) * VH + 1.0 * VH;
+  await at(page, pastY); await page.waitForTimeout(600);
+  const bodyTop = await page.evaluate(() => document.getElementById("experience").getBoundingClientRect().top);
+  if (bodyTop >= VH) fail(`after the film: body top still below the viewport (${bodyTop})`);
+  await page.screenshot({ path: ".impeccable/review/handoff.png" });
+  const statsFile = ".next/qa-handoff-stats.txt";
+  await ffmpeg(["-i", ".impeccable/review/handoff.png", "-vf", `crop=1440:${Math.round(VH - bodyTop - 24)}:0:${Math.round(bodyTop + 12)},signalstats,metadata=print:file=${statsFile}`, "-f", "null", "-"]);
+  const yavg = Number((await readFile(statsFile, "utf8")).match(/YAVG=([\d.]+)/)?.[1]);
+  if (!(yavg < 40)) fail(`after the film: the film stage paints over the body (body region luma ${yavg})`);
+
   await at(page, 0); await settle(page);
   await page.screenshot({ path: ".impeccable/review/desktop.png" });
   await page.screenshot({ path: ".impeccable/review/hero-repro.png" });
