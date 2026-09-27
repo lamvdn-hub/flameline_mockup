@@ -1,0 +1,13 @@
+{
+  "model": "google/nano-banana-pro",
+  "prompt": "Ultra-photorealistic cinematic photograph, anamorphic 35mm lens, deep near-black shadows, a single warm ember-amber key light, low golden-hour sun, rich tobacco-brown and dark-cedar palette with shadows near #0c0a08 and highlights near #d49152 and #e7b46a, fine film grain, shallow depth of field, editorial luxury magazine quality, no faces, no text, no letters, no logos, 16:9 landscape composition with the focal subject centred.\nSubject: a floor-to-ceiling walk-in humidor opening into a quiet lounge, Spanish cedar shelving, rows of open plain unlabelled cedar cigar boxes with no printed labels, bands, stamps or lettering of any kind, two leather club chairs, one brass reading lamp, deep shadows",
+  "refs": [],
+  "params": {
+    "tier": "final",
+    "aspect_ratio": "16:9",
+    "num_images": 1,
+    "resolution": "4K",
+    "output_format": "png"
+  },
+  "created": "2026-09-27T11:15:26.493Z"
+}
