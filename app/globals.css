@@ -653,6 +653,26 @@ p {
 .footer__warn {
   color: var(--oxblood);
 }
+.footer__legal {
+  padding: 0 var(--s4) 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer__legal-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dim);
+  cursor: pointer;
+}
+.footer__legal-link:hover {
+  color: var(--amber);
+}
 
 @media (max-width: 860px) {
   .section {

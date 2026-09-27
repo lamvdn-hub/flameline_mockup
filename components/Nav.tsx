@@ -30,7 +30,7 @@ export default function Nav() {
           {LINKS.map((l) => (
             <a key={l.href} href={l.href} className="nav__link">{l.label}</a>
           ))}
-          <a href="#b2b" className="nav__b2b">B2B Login</a>
+          <a href="#b2b" className="nav__b2b">Partner Login</a>
         </nav>
       </div>
     </header>
