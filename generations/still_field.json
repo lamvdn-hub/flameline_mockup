@@ -1,12 +1,13 @@
 {
-  "model": "google/nano-banana-2-lite",
+  "model": "google/nano-banana-pro",
   "prompt": "Ultra-photorealistic cinematic photograph, anamorphic 35mm lens, deep near-black shadows, a single warm ember-amber key light, low golden-hour sun, rich tobacco-brown and dark-cedar palette with shadows near #0c0a08 and highlights near #d49152 and #e7b46a, fine film grain, shallow depth of field, editorial luxury magazine quality, no faces, no text, no letters, no logos, 16:9 landscape composition with the focal subject centred.\nSubject: an Estelí tobacco field at dawn, dew on broad tobacco leaves in the foreground, low mist over the rows, a wooden curing barn on the horizon, volcanic hills behind, the first sun raking across the leaves",
   "refs": [],
   "params": {
-    "tier": "draft",
+    "tier": "final",
     "aspect_ratio": "16:9",
     "num_images": 1,
+    "resolution": "4K",
     "output_format": "png"
   },
-  "created": "2026-09-27T11:11:17.263Z"
+  "created": "2026-09-27T11:14:12.389Z"
 }

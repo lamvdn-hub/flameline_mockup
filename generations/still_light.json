@@ -1,12 +1,13 @@
 {
-  "model": "google/nano-banana-2-lite",
+  "model": "google/nano-banana-pro",
   "prompt": "Ultra-photorealistic cinematic photograph, anamorphic 35mm lens, deep near-black shadows, a single warm ember-amber key light, low golden-hour sun, rich tobacco-brown and dark-cedar palette with shadows near #0c0a08 and highlights near #d49152 and #e7b46a, fine film grain, shallow depth of field, editorial luxury magazine quality, no faces, no text, no letters, no logos, 16:9 landscape composition with the focal subject centred.\nSubject: a single premium cigar resting on the rim of a crystal ashtray, its foot just toasting against the soft flame of a brass table lighter, a thin ribbon of smoke rising, no hands, no people, no bands or lettering, dark cedar and leather in the background, two closed cigar boxes out of focus",
   "refs": [],
   "params": {
-    "tier": "draft",
+    "tier": "final",
     "aspect_ratio": "16:9",
     "num_images": 1,
+    "resolution": "4K",
     "output_format": "png"
   },
-  "created": "2026-09-27T11:12:18.559Z"
+  "created": "2026-09-27T11:16:04.613Z"
 }

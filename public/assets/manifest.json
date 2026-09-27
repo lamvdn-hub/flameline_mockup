@@ -1,4 +1,9 @@
 {
-  "stills": {},
+  "stills": {
+    "field": "/assets/stills/field.webp",
+    "gallery": "/assets/stills/gallery.webp",
+    "humidor": "/assets/stills/humidor.webp",
+    "light": "/assets/stills/light.webp"
+  },
   "clips": {}
 }
