@@ -131,4 +131,12 @@ test("seams dissolve over 0.4vh and the incoming scene's copy stays gated inside
   const copies = el.querySelectorAll<HTMLElement>(".sw-copy");
   expect(Number(copies[2].style.opacity)).toBeLessThan(0.05);
   expect(Number(copies[1].style.opacity)).toBe(0);
+  (window as unknown as { scrollY: number }).scrollY = seam2 + 350;   // still inside the 0.4vh band: copy stays at zero
+  window.dispatchEvent(new Event("scroll"));
+  await new Promise((r) => setTimeout(r, 20));
+  expect(Number(copies[2].style.opacity)).toBeLessThan(0.01);
+  (window as unknown as { scrollY: number }).scrollY = seam2 + 700;   // half a viewport past the seam: copy is in
+  window.dispatchEvent(new Event("scroll"));
+  await new Promise((r) => setTimeout(r, 20));
+  expect(Number(copies[2].style.opacity)).toBeGreaterThan(0.8);
 });
