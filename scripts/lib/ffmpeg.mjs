@@ -21,9 +21,14 @@ export async function firstFrame(videoPath, pngPath) {
   return pngPath;
 }
 
-/** Scrub-friendly encode: native res, crf 20, GOP 8, light sharpen, no audio, faststart. Pure. */
+/**
+ * Scrub-friendly encode: native res, crf 20, light sharpen, no audio, faststart.
+ * Every scroll frame seeks, so decode cost per seek is what matters: Main profile,
+ * no B-frames (no reordering), fastdecode tuning, keyframe every 4 frames so a
+ * seek decodes at most 4 simple frames. Pure.
+ */
 export function encodeArgs(inPath, outPath) {
-  return ["-y", "-i", inPath, "-an", "-vf", "unsharp=5:5:0.8:5:5:0.0", "-c:v", "libx264", "-preset", "slow", "-crf", "20", "-pix_fmt", "yuv420p", "-g", "8", "-keyint_min", "8", "-sc_threshold", "0", "-movflags", "+faststart", outPath];
+  return ["-y", "-i", inPath, "-an", "-vf", "unsharp=5:5:0.8:5:5:0.0", "-c:v", "libx264", "-preset", "slow", "-crf", "20", "-pix_fmt", "yuv420p", "-profile:v", "main", "-tune", "fastdecode", "-bf", "0", "-g", "4", "-keyint_min", "4", "-sc_threshold", "0", "-movflags", "+faststart", outPath];
 }
 
 /** Poster webp, 1800 px wide, quality 84. Pure. */

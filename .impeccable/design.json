@@ -219,7 +219,7 @@
     "motion": [
       {
         "name": "film-scrub",
-        "value": "scroll-positioned; diveScroll 1.4vh per scene (field 1.7, light 1.8); crossfade 0.08vh; linger 0.25 to 0.45",
+        "value": "scroll-positioned; diveScroll 1.4vh per scene (field 1.7, light 1.8); crossfade 0.4vh; linger 0.25 to 0.45",
         "purpose": "The one authored motion: scroll drives the camera, nothing runs on time."
       },
       {

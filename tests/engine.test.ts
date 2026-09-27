@@ -115,3 +115,17 @@ test("past the film the last scene holds, the scrim follows the finale copy, and
   expect(cop).toBeLessThan(1);
   expect(Number(el.style.getPropertyValue("--sw-scrim"))).toBeCloseTo(cop, 3);
 });
+
+test("seams dissolve over 0.4vh and the incoming scene's copy stays gated inside the band", async () => {
+  const { el } = mount();
+  const seam2 = (1.7 + 1.4) * 1000;
+  (window as unknown as { scrollY: number }).scrollY = seam2 + 150;   // 0.15vh past the seam, inside a 0.4vh fade
+  window.dispatchEvent(new Event("scroll"));
+  await new Promise((r) => setTimeout(r, 20));
+  const scenes = el.querySelectorAll<HTMLElement>(".sw-scene");
+  expect(Number(scenes[1].style.opacity)).toBeGreaterThan(0.3);   // outgoing still visible: a dissolve, not a cut
+  expect(Number(scenes[2].style.opacity)).toBe(1);
+  const copies = el.querySelectorAll<HTMLElement>(".sw-copy");
+  expect(Number(copies[2].style.opacity)).toBeLessThan(0.05);
+  expect(Number(copies[1].style.opacity)).toBe(0);
+});

@@ -22,3 +22,9 @@ test("exported CSS carries the ember token", () => {
   const css = files.map((f) => readFileSync(f, "utf8")).join("\n");
   expect(css).toContain("--ember:#d49152");
 });
+
+test("the document does not use smooth scrolling (it double-eases the scrubbed film)", () => {
+  const files = cssFiles("out/_next/static");
+  const css = files.map((f) => readFileSync(f, "utf8")).join("\n");
+  expect(css.replace(/\s+/g, "")).not.toContain("scroll-behavior:smooth");
+});

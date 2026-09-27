@@ -22,7 +22,7 @@ export type EngineSection = {
 
 export type EngineConfig = {
   diveScroll: 1.4;
-  crossfade: 0.08;
+  crossfade: 0.4;
   connectors: [];
   nav: false;
   atmosphere: false;
@@ -50,7 +50,7 @@ export function placeholderStill(id: SceneId): string {
 export function buildConfig(scenes: readonly Scene[], manifest: Manifest): EngineConfig {
   return {
     diveScroll: 1.4,
-    crossfade: 0.08,
+    crossfade: 0.4,
     connectors: [],
     nav: false,
     atmosphere: false,

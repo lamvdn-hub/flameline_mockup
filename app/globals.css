@@ -58,13 +58,8 @@
 
 html {
   color-scheme: dark;
-  scroll-behavior: smooth;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+  /* No smooth scrolling: the film is scrubbed by scroll position and eases on
+     its own; browser smoothing on top reads as lag. */
 }
 
 html,

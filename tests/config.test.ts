@@ -22,7 +22,7 @@ test("buildConfig omits clip when missing and falls back to placeholder still", 
   });
   expect(cfg.connectors).toEqual([]);
   expect(cfg.diveScroll).toBe(1.4);
-  expect(cfg.crossfade).toBe(0.08);
+  expect(cfg.crossfade).toBe(0.4);
   expect(cfg.nav).toBe(false);
   expect(cfg.atmosphere).toBe(false);
   expect(cfg.hint).toBe("scroll");

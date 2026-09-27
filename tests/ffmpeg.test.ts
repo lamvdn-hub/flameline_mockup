@@ -3,7 +3,7 @@ import { encodeArgs, posterArgs, uploadScaleArgs, vp9ShimArgs } from "../scripts
 
 test("encodeArgs matches the spec", () => {
   expect(encodeArgs("a.mp4", "b.mp4").join(" ")).toBe(
-    "-y -i a.mp4 -an -vf unsharp=5:5:0.8:5:5:0.0 -c:v libx264 -preset slow -crf 20 -pix_fmt yuv420p -g 8 -keyint_min 8 -sc_threshold 0 -movflags +faststart b.mp4",
+    "-y -i a.mp4 -an -vf unsharp=5:5:0.8:5:5:0.0 -c:v libx264 -preset slow -crf 20 -pix_fmt yuv420p -profile:v main -tune fastdecode -bf 0 -g 4 -keyint_min 4 -sc_threshold 0 -movflags +faststart b.mp4",
   );
 });
 
