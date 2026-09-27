@@ -462,6 +462,109 @@ p {
   color: var(--dim);
 }
 
+/* section lead */
+.section-lead {
+  font-size: 14.5px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 56ch;
+  margin: -12px 0 30px;
+}
+
+/* event gallery: four client photo slots, one wide */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+.gallery__wide {
+  grid-column: span 2;
+}
+
+/* brands: two houses, brand photo + three product slots each */
+.brands__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.brand {
+  border: 1px solid var(--line);
+  background: var(--ground);
+  padding: 26px;
+  display: grid;
+  gap: 14px;
+}
+.brand__name {
+  font-size: 30px;
+  font-weight: 400;
+  margin-top: 6px;
+}
+.brand__origin {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--ember);
+  margin-top: -8px;
+}
+.brand__body {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.brand__products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 6px;
+}
+.brand__product {
+  display: grid;
+  gap: 8px;
+}
+.brand__line {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}
+
+/* founder: portrait + a word from the house */
+.house__grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 340px) 1fr;
+  gap: 56px;
+  align-items: start;
+}
+.house__quote {
+  font-size: 30px;
+  line-height: 1.2;
+  font-weight: 300;
+  color: var(--cream);
+  margin: 0 0 22px;
+  max-width: 24ch;
+}
+.house__body {
+  font-size: 14.5px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 56ch;
+  margin-bottom: 26px;
+}
+.house__sign {
+  display: grid;
+  gap: 6px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  max-width: 320px;
+}
+.house__sign-name {
+  color: var(--amber);
+}
+.house__sign-role {
+  color: var(--dim);
+}
+
 /* trade band */
 .trade__inner {
   display: flex;
@@ -556,8 +659,16 @@ p {
     padding: 56px 0;
   }
   .pathways__grid,
-  .events__grid {
+  .events__grid,
+  .brands__grid,
+  .house__grid {
     grid-template-columns: 1fr;
+  }
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+  .house__quote {
+    font-size: 24px;
   }
   .events__grid {
     gap: var(--s4);

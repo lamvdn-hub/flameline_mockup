@@ -16,7 +16,7 @@ const PATHS = [
     cta: "Start reading →",
   },
   {
-    href: "#b2b",
+    href: "#brands",
     kicker: "The portfolio",
     title: "Horacio & Barreda",
     body: "Two Nicaraguan-rooted houses we carry: flavor profiles, key lines and what makes each worth shelf space.",

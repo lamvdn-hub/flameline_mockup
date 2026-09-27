@@ -5,7 +5,7 @@ const LINKS = [
   { href: "#hero", label: "Home" },
   { href: "#events", label: "Events" },
   { href: "#experience", label: "The Experience" },
-  { href: "#b2b", label: "Brands" },
+  { href: "#brands", label: "Brands" },
 ];
 
 /**
