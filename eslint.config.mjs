@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // third-party skill scripts and plan scratch
+    ".claude/**",
+    ".superpowers/**",
   ]),
 ]);
 

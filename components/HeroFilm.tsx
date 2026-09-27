@@ -27,6 +27,7 @@ export default function HeroFilm({ manifest }: Props) {
     <div ref={ref} className="hero-film" aria-label="The line from leaf to light">
       {config.sections.map((s, i) => (
         <section key={s.id} className="hero-film__fallback">
+          {/* eslint-disable-next-line @next/next/no-img-element -- static export, unoptimized poster */}
           <img src={s.still} alt="" width={1920} height={1080} loading={i === 0 ? "eager" : "lazy"} />
           <div className="hero-film__copy">
             <p className="kicker">{s.eyebrow}</p>

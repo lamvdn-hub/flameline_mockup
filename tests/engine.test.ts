@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { test, expect, beforeEach, vi } from "vitest";
+import { test, expect, beforeEach } from "vitest";
 import { mountScrollWorld } from "@/lib/scroll-world/scrub-engine.js";
 import { buildConfig } from "@/lib/scroll-world/config";
 import { SCENES } from "@/lib/scroll-world/scenes";
