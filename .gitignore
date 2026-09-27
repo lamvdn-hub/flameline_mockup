@@ -1,0 +1,8 @@
+node_modules/
+.next/
+out/
+generations/*
+!generations/*.json
+.env
+.env.*
+*.log
