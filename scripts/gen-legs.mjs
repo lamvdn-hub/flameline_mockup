@@ -6,14 +6,15 @@
 // Attempt 2+ strips filter trigger words and appends the tasteful clause.
 import { readFile, mkdir } from "node:fs/promises";
 import { setTimeout as sleep } from "node:timers/promises";
-import { postJson, getJson, download, requireEnv } from "./lib/http.mjs";
+import { postJson, getJson, requireEnv } from "./lib/http.mjs";
+import { KIE as KIE_BASE, downloadKieResult } from "./lib/kie.mjs";
 import { writeSidecar } from "./lib/sidecar.mjs";
 import { uploadPublic } from "./lib/upload.mjs";
 import { lastFrame } from "./lib/ffmpeg.mjs";
 import { legPlan } from "./lib/chain.mjs";
 import { parseArgs, SCENE_IDS } from "./lib/cli.mjs";
 
-const KIE = "https://api.kie.ai/api/v1/jobs";
+const KIE = `${KIE_BASE}/jobs`;
 const MODEL = "kling-3.0/video";
 const TRIGGERS = /\b(bed|pool|waterfall|wine|swim|flame|smoke)\b/gi;
 
@@ -54,7 +55,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     let videoUrl;
     try { videoUrl = await poll(taskId, key); }
     catch (e) { console.error(`\n${e.message}\nRe-roll: node scripts/gen-legs.mjs --from ${leg.index} --attempt ${attempt + 1}`); process.exit(2); }
-    await download(videoUrl, leg.raw);
+    await downloadKieResult(videoUrl, leg.raw, key);
     await lastFrame(leg.raw, leg.lastFrame);
     await writeSidecar(leg.raw, { model: MODEL, prompt, refs: [leg.startImage], params: { ...input, image_urls: undefined, attempt, taskId } });
     console.log(`\n  ok → ${leg.raw}\n  INSPECT ${leg.lastFrame} before running --from ${leg.index + 1}: it must read as a calm forward-glide frame.`);
