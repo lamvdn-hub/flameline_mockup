@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Camera legs on Kie AI (Kling 3.0 pro), sequential with frame handoff.
-//   node scripts/gen-legs.mjs --from <index> [--to <index>] [--attempt n]
+//   node scripts/gen-legs.mjs --from <index> [--to <index>] [--attempt n] [--start <image>]
+// --start restarts the leg from an explicit frame (a scene still) instead of the chain.
 // Leg i starts from leg i-1's ACTUAL last frame. The script stops after each
 // leg and prints the last-frame path: inspect it before running the next index.
 // Attempt 2+ strips filter trigger words and appends the tasteful clause.
@@ -11,7 +12,7 @@ import { KIE as KIE_BASE, downloadKieResult } from "./lib/kie.mjs";
 import { writeSidecar } from "./lib/sidecar.mjs";
 import { uploadPublic } from "./lib/upload.mjs";
 import { ffmpeg, lastFrame, uploadScaleArgs } from "./lib/ffmpeg.mjs";
-import { legPlan } from "./lib/chain.mjs";
+import { legPlan, startImageFor } from "./lib/chain.mjs";
 import { parseArgs, SCENE_IDS } from "./lib/cli.mjs";
 
 const KIE = `${KIE_BASE}/jobs`;
@@ -45,9 +46,10 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 
   for (const leg of plan.slice(from, to + 1)) {
     const prompt = promptForAttempt((await readFile(leg.prompt, "utf8")).trim(), attempt);
-    console.log(`leg ${leg.index} ${leg.id}: start image ${leg.startImage} (attempt ${attempt})`);
+    const startImage = startImageFor(leg, args.start);
+    console.log(`leg ${leg.index} ${leg.id}: start image ${startImage} (attempt ${attempt})`);
     const uploadCopy = `generations/upload_${leg.id}.png`;
-    await ffmpeg(uploadScaleArgs(leg.startImage, uploadCopy));
+    await ffmpeg(uploadScaleArgs(startImage, uploadCopy));
     const imageUrl = await uploadPublic(uploadCopy);
     console.log(`  start image uploaded → ${imageUrl}`);
     const input = { prompt, image_urls: [imageUrl], duration: "10", aspect_ratio: "16:9", mode: "pro", multi_shots: false, sound: false };
@@ -60,7 +62,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     catch (e) { console.error(`\n${e.message}\nRe-roll: node scripts/gen-legs.mjs --from ${leg.index} --attempt ${attempt + 1}`); process.exit(2); }
     await downloadKieResult(videoUrl, leg.raw, key);
     await lastFrame(leg.raw, leg.lastFrame);
-    await writeSidecar(leg.raw, { model: MODEL, prompt, refs: [leg.startImage], params: { ...input, image_urls: undefined, attempt, taskId } });
+    await writeSidecar(leg.raw, { model: MODEL, prompt, refs: [startImage], params: { ...input, image_urls: undefined, attempt, taskId } });
     console.log(`\n  ok → ${leg.raw}\n  INSPECT ${leg.lastFrame} before running --from ${leg.index + 1}: it must read as a calm forward-glide frame.`);
   }
 }

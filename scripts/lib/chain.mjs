@@ -12,3 +12,13 @@ export function legPlan(sceneIds, { workDir, assetsDir }) {
     encoded: `${assetsDir}/vid/${id}.mp4`,
   }));
 }
+
+/**
+ * The frame a leg starts from: the chain's (still for leg 0, previous last
+ * frame otherwise) unless the executor overrides it, e.g. to restart a scene
+ * from its own still when the chain has drifted out of that scene's world.
+ * The engine's crossfade then carries that one seam. Pure.
+ */
+export function startImageFor(leg, override) {
+  return override || leg.startImage;
+}

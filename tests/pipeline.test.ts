@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { test, expect } from "vitest";
 import { buildStillPrompt, buildLegPrompt, HANDOFF_OPEN, handoffClose } from "../scripts/lib/prompts.mjs";
-import { legPlan } from "../scripts/lib/chain.mjs";
+import { legPlan, startImageFor } from "../scripts/lib/chain.mjs";
 import { buildManifest } from "../scripts/lib/manifest.mjs";
 
 const ids = ["field", "gallery", "humidor", "light"];
@@ -48,4 +48,10 @@ test("buildManifest lists only present files", () => {
   expect(
     buildManifest(["assets/stills/field.webp", "assets/vid/field.mp4", "assets/stills/placeholder-field.svg"], ids),
   ).toEqual({ stills: { field: "/assets/stills/field.webp" }, clips: { field: "/assets/vid/field.mp4" } });
+});
+
+test("startImageFor honours an explicit override, else the chain's start image", () => {
+  const leg = legPlan(ids, { workDir: "generations", assetsDir: "public/assets" })[2];
+  expect(startImageFor(leg)).toBe("generations/last_gallery.png");
+  expect(startImageFor(leg, "generations/still_humidor.png")).toBe("generations/still_humidor.png");
 });
