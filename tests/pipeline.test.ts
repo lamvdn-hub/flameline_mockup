@@ -3,6 +3,7 @@ import { test, expect } from "vitest";
 import { buildStillPrompt, buildLegPrompt, HANDOFF_OPEN, handoffClose } from "../scripts/lib/prompts.mjs";
 import { legPlan, startImageFor } from "../scripts/lib/chain.mjs";
 import { buildManifest } from "../scripts/lib/manifest.mjs";
+import { stillRequest } from "../scripts/lib/stills.mjs";
 
 const ids = ["field", "gallery", "humidor", "light"];
 
@@ -54,4 +55,15 @@ test("startImageFor honours an explicit override, else the chain's start image",
   const leg = legPlan(ids, { workDir: "generations", assetsDir: "public/assets" })[2];
   expect(startImageFor(leg)).toBe("generations/last_gallery.png");
   expect(startImageFor(leg, "generations/still_humidor.png")).toBe("generations/still_humidor.png");
+});
+
+test("stillRequest targets the edit endpoint with image_urls when a reference is given", () => {
+  const plain = stillRequest("final", "P");
+  expect(plain.slug).toBe("google/nano-banana-pro");
+  expect(plain.body).toMatchObject({ prompt: "P", aspect_ratio: "16:9", resolution: "4K", sync_mode: true });
+  expect(plain.body.image_urls).toBeUndefined();
+  const ref = stillRequest("final", "P", "https://v3.fal.media/x.png");
+  expect(ref.slug).toBe("google/nano-banana-pro/edit");
+  expect(ref.body.image_urls).toEqual(["https://v3.fal.media/x.png"]);
+  expect(stillRequest("draft", "P", "https://v3.fal.media/x.png").slug).toBe("google/nano-banana-2-lite/edit");
 });
