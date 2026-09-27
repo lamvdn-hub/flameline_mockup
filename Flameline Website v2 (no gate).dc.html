@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flameline · Premium Cigar Distribution</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  html,body{ margin:0; padding:0; background:#0c0a08; }
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:9999;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.9  0 0 0 0 0.85  0 0 0 0 0.75  0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity:0.5; mix-blend-mode:overlay;
+  }
+  ::selection{ background:rgba(212,145,82,0.28); }
+  input::placeholder, textarea::placeholder{ color:#6f6350; opacity:1; }
+  select option{ background:#14110e; color:#e9e2d3; }
+  @keyframes fadeUp{ from{ opacity:0; transform:translateY(10px);} to{ opacity:1; transform:none;} }
+  @keyframes emberPulse{ 0%,100%{ box-shadow:0 0 6px 1px rgba(212,145,82,0.55);} 50%{ box-shadow:0 0 14px 4px rgba(212,145,82,0.85);} }
+</style>
+</helmet>
+
+<div style="min-height:100vh; background:#0c0a08; color:#e9e2d3; font-family:'Inter Tight',sans-serif; font-weight:300; letter-spacing:0.01em; line-height:1.55;">
+
+  <!-- ============ NAV ============ -->
+  <header style="position:sticky; top:0; z-index:100; background:rgba(12,10,8,0.92); backdrop-filter:blur(8px); border-bottom:1px solid #3a312a;">
+    <div style="max-width:1180px; margin:0 auto; padding:0 32px; display:flex; align-items:center; justify-content:space-between; gap:24px; height:68px;">
+      <button onClick="{{ goHome }}" style="cursor:pointer; background:none; border:none; padding:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:22px; letter-spacing:0.26em; color:#e7b46a; text-transform:uppercase;">Flameline</button>
+      <nav style="display:flex; align-items:center; gap:4px;">
+        <sc-for list="{{ navItems }}" as="nv" hint-placeholder-count="5">
+          <button onClick="{{ nv.go }}" style="cursor:pointer; background:none; border:none; padding:24px 14px 22px; border-bottom:2px solid {{ nv.border }}; color:{{ nv.color }}; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase;" style-hover="color:#e7b46a;">{{ nv.label }}</button>
+        </sc-for>
+        <button onClick="{{ goB2B }}" style="cursor:pointer; margin-left:14px; background:none; border:1px solid #b89968; color:#e7b46a; padding:9px 16px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase;" style-hover="background:#d49152; border-color:#d49152; color:#0c0a08;">{{ b2bNavLabel }}</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ HOME ============ -->
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <main data-screen-label="Homepage" style="animation:fadeUp 0.4s ease both;">
+      <!-- HERO -->
+      <section style="border-bottom:1px solid #3a312a; position:relative;">
+        <div style="max-width:1180px; margin:0 auto; padding:88px 32px 96px; display:grid; grid-template-columns:1.15fr 0.85fr; gap:64px; position:relative;">
+          <div style="position:absolute; left:0; top:0; bottom:0; width:1px; background:linear-gradient(180deg,#3a312a 0%,#3a312a 30%,#d49152 38%,#3a312a 46%,#3a312a 100%);"></div>
+          <div style="padding-left:40px;">
+            <p style="margin:0 0 22px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; color:#c9bfa8;">Premium cigar distribution · Borås · Sweden</p>
+            <h1 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(52px,6vw,84px); line-height:0.96; letter-spacing:-0.02em; color:#e9e2d3;">The line from <em style="font-style:italic; color:#d49152;">leaf</em> to light.</h1>
+            <p style="margin:28px 0 0; max-width:52ch; font-size:15.5px; color:#c9bfa8; line-height:1.7;">Flameline curates and distributes premium, handcrafted cigars for the Nordics — and shares the culture that surrounds them. From distributor pricing to guided corporate tastings, one house holds the whole line.</p>
+            <div style="display:flex; gap:12px; margin-top:36px; flex-wrap:wrap;">
+              <button onClick="{{ goExperience }}" style="cursor:pointer; background:#d49152; color:#0c0a08; border:none; padding:15px 24px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.18em; text-transform:uppercase;" style-hover="background:#e7b46a;">Explore the cigar experience</button>
+              <button onClick="{{ goB2B }}" style="cursor:pointer; background:none; border:1px solid #3a312a; color:#e9e2d3; padding:15px 24px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.18em; text-transform:uppercase;" style-hover="border-color:#b89968; color:#e7b46a;">B2B partner login</button>
+            </div>
+          </div>
+          <div style="align-self:end; padding-bottom:8px;">
+            <div style="border:1px solid #3a312a; background:#14110e; padding:28px 26px;">
+              <p style="margin:0 0 16px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#d49152;">The house at a glance</p>
+              <div style="display:grid; gap:12px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#c9bfa8; line-height:1.9;">
+                <div>Portfolio · <span style="color:#e7b46a;">Horacio · Barreda</span></div>
+                <div>Origins · <span style="color:#e7b46a;">Estelí · Jalapa · Ometepe</span></div>
+                <div>Services · <span style="color:#e7b46a;">Wholesale · Events · Education</span></div>
+                <div>Audience · <span style="color:#e7b46a;">Trade &amp; enthusiasts · 18+</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PATHWAYS -->
+      <section style="border-bottom:1px solid #3a312a;">
+        <div style="max-width:1180px; margin:0 auto; padding:72px 32px;">
+          <div style="display:flex; align-items:baseline; gap:18px; margin-bottom:34px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.22em; color:#d49152;">01</span>
+            <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:400; color:#e9e2d3;">Three ways <em style="color:#d49152; font-weight:300;">in</em></h2>
+            <span style="flex:1; height:1px; background:#3a312a;"></span>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:14px;">
+            <button onClick="{{ goEvents }}" style="cursor:pointer; text-align:left; border:1px solid #3a312a; background:#14110e; padding:30px 26px;" style-hover="border-color:#b89968;">
+              <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#d49152; margin-bottom:14px;">Event services</div>
+              <div style="font-family:'Cormorant Garamond',serif; font-size:24px; color:#e9e2d3; margin-bottom:10px;">Corporate &amp; private tastings</div>
+              <p style="margin:0; font-size:13.5px; color:#c9bfa8; line-height:1.6;">Guided cigar evenings for teams and clients — technique, etiquette and a curated flight, hosted by our specialists.</p>
+              <div style="margin-top:18px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#e7b46a;">View packages →</div>
+            </button>
+            <button onClick="{{ goExperience }}" style="cursor:pointer; text-align:left; border:1px solid #3a312a; background:#14110e; padding:30px 26px;" style-hover="border-color:#b89968;">
+              <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#d49152; margin-bottom:14px;">Culture &amp; education</div>
+              <div style="font-family:'Cormorant Garamond',serif; font-size:24px; color:#e9e2d3; margin-bottom:10px;">The cigar experience</div>
+              <p style="margin:0; font-size:13.5px; color:#c9bfa8; line-height:1.6;">Five centuries of history and the anatomy of a handmade cigar — an educational hub for the curious and the devoted.</p>
+              <div style="margin-top:18px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#e7b46a;">Start reading →</div>
+            </button>
+            <button onClick="{{ goBrands }}" style="cursor:pointer; text-align:left; border:1px solid #3a312a; background:#14110e; padding:30px 26px;" style-hover="border-color:#b89968;">
+              <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#d49152; margin-bottom:14px;">The portfolio</div>
+              <div style="font-family:'Cormorant Garamond',serif; font-size:24px; color:#e9e2d3; margin-bottom:10px;">Horacio &amp; Barreda</div>
+              <p style="margin:0; font-size:13.5px; color:#c9bfa8; line-height:1.6;">Two Nicaraguan-rooted houses we carry — flavor profiles, key lines and what makes each worth shelf space.</p>
+              <div style="margin-top:18px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#e7b46a;">Meet the brands →</div>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- EVENTS TEASER -->
+      <section style="border-bottom:1px solid #3a312a; background:#14110e;">
+        <div style="max-width:1180px; margin:0 auto; padding:72px 32px; display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;">
+          <div>
+            <p style="margin:0 0 14px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; color:#d49152;">Event services</p>
+            <h2 style="margin:0 0 18px; font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:300; line-height:1.05; color:#e9e2d3;">An evening your guests will <em style="color:#d49152;">talk about</em> for years.</h2>
+            <p style="margin:0 0 26px; font-size:14.5px; color:#c9bfa8; line-height:1.7; max-width:52ch;">Hosted at our partner lounge Yxtobak in Borås — beneath a floor-to-ceiling humidor — every package includes cigars, equipment and a resident expert who teaches the craft: cut, light, draw, and the reading of the ash.</p>
+            <button onClick="{{ goEvents }}" style="cursor:pointer; background:none; border:1px solid #b89968; color:#e7b46a; padding:14px 22px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.18em; text-transform:uppercase;" style-hover="background:#d49152; border-color:#d49152; color:#0c0a08;">See event packages</button>
+          </div>
+          <div style="display:grid; gap:1px; background:#3a312a; border:1px solid #3a312a;">
+            <div style="background:#0c0a08; padding:18px 22px; display:flex; justify-content:space-between; align-items:baseline;">
+              <span style="font-family:'Cormorant Garamond',serif; font-size:20px; color:#e9e2d3;">01 · The Discovery</span>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.14em; color:#c9bfa8;">BEGINNERS</span>
+            </div>
+            <div style="background:#0c0a08; padding:18px 22px; display:flex; justify-content:space-between; align-items:baseline;">
+              <span style="font-family:'Cormorant Garamond',serif; font-size:20px; color:#e9e2d3;">02 · The Signature</span>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.14em; color:#c9bfa8;">ENTHUSIASTS</span>
+            </div>
+            <div style="background:#0c0a08; padding:18px 22px; display:flex; justify-content:space-between; align-items:baseline;">
+              <span style="font-family:'Cormorant Garamond',serif; font-size:20px; color:#e9e2d3;">03 · The Reserve</span>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.14em; color:#c9bfa8;">AFICIONADOS</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- B2B BAND -->
+      <section style="border-bottom:1px solid #3a312a;">
+        <div style="max-width:1180px; margin:0 auto; padding:64px 32px; display:flex; align-items:center; justify-content:space-between; gap:36px; flex-wrap:wrap;">
+          <div style="max-width:60ch;">
+            <p style="margin:0 0 10px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; color:#d49152;">Trade partners</p>
+            <h2 style="margin:0 0 12px; font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:400; color:#e9e2d3;">Distributor pricing, package breakdowns <span style="font-style:italic; color:#8b2d20;">&amp;</span> direct ordering.</h2>
+            <p style="margin:0; font-size:14px; color:#c9bfa8; line-height:1.7;">Retailers, lounges and corporate buyers order directly through the wholesale portal — full line card, volume pricing and event wholesale rates behind the partner login.</p>
+          </div>
+          <button onClick="{{ goB2B }}" style="cursor:pointer; flex:none; background:#d49152; color:#0c0a08; border:none; padding:16px 28px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.18em; text-transform:uppercase;" style-hover="background:#e7b46a;">Enter the portal →</button>
+        </div>
+      </section>
+    </main>
+  </sc-if>
+
+  <!-- ============ EVENTS ============ -->
+  <sc-if value="{{ isEvents }}" hint-placeholder-val="{{ false }}">
+    <main data-screen-label="Event Services" style="animation:fadeUp 0.4s ease both;">
+      <section style="border-bottom:1px solid #3a312a;">
+        <div style="max-width:1180px; margin:0 auto; padding:72px 32px 60px;">
+          <p style="margin:0 0 16px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; color:#c9bfa8;">Event services <span style="color:#d49152;">·</span> Corporate &amp; private</p>
+          <h1 style="margin:0 0 20px; font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(44px,5vw,68px); line-height:1; color:#e9e2d3;">Cigar evenings, <em style="color:#d49152;">hosted</em> properly.</h1>
+          <p style="margin:0; max-width:66ch; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:21px; color:#c9bfa8; line-height:1.5;">We bring the cigars, the tools, and a host who knows the craft. Your guests leave knowing how to cut, light, draw — and why the ash tells the truth.</p>
+        </div>
+      </section>
+
+      <!-- LOUNGE -->
+      <section style="border-bottom:1px solid #3a312a; background:#14110e;">
+        <div style="max-width:1180px; margin:0 auto; padding:64px 32px;">
+          <div style="display:flex; align-items:baseline; gap:18px; margin-bottom:34px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.22em; color:#d49152;">01</span>
+            <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:400; color:#e9e2d3;">Hosted at our location — <em style="color:#d49152; font-weight:300;">Yxtobak Lounge</em></h2>
+            <span style="flex:1; height:1px; background:#3a312a;"></span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#c9bfa8;">Allégatan 14 · Borås</span>
+          </div>
+          <div style="display:grid; grid-template-columns:0.9fr 1.1fr; gap:48px; align-items:start;">
+            <div>
+              <p style="margin:0 0 16px; font-size:14px; color:#c9bfa8; line-height:1.7;">Located at Allégatan 14 in Borås, our partner lounge Yxtobak provides the perfect backdrop for your evening. Inside, you are greeted by a spectacular floor-to-ceiling humidor and an atmosphere deeply dedicated to authentic cigar culture.</p>
+              <div style="border:1px solid #3a312a; background:#0c0a08; padding:22px 24px;">
+                <p style="margin:0 0 8px; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.2em; text-transform:uppercase; color:#d49152;">Expert guidance &amp; curation</p>
+                <p style="margin:0; font-size:13.5px; color:#c9bfa8; line-height:1.65;">Driven by a passion to offer the absolute best from the cigar world, our resident experts serve as your personal guides — reading the room and recommending the perfect cigar for each guest's palate and personality. When you book an evening with us, your group is in the hands of true connoisseurs.</p>
+              </div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+              <div style="grid-column:1 / -1; height:240px;">
+                <image-slot id="lounge-main" shape="rect" placeholder="Drop a lounge photo"></image-slot>
+              </div>
+              <div style="height:160px;">
+                <image-slot id="lounge-humidor" shape="rect" placeholder="Drop a humidor photo"></image-slot>
+              </div>
+              <div style="height:160px;">
+                <image-slot id="lounge-event" shape="rect" placeholder="Drop an event photo"></image-slot>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PACKAGES -->
+      <section style="border-bottom:1px solid #3a312a;">
+        <div style="max-width:1180px; margin:0 auto; padding:64px 32px;">
+          <div style="display:flex; align-items:baseline; gap:18px; margin-bottom:34px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.22em; color:#d49152;">02</span>
+            <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:400; color:#e9e2d3;">The <em style="color:#d49152; font-weight:300;">packages</em></h2>
+            <span style="flex:1; height:1px; background:#3a312a;"></span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#c9bfa8;">Hosted in the lounge</span>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:14px; align-items:stretch;">
+            <sc-for list="{{ eventPackages }}" as="pk" hint-placeholder-count="3">
+              <div style="border:1px solid {{ pk.borderCol }}; background:#14110e; padding:30px 26px; display:flex; flex-direction:column;">
+                <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px;">
+                  <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#d49152;">{{ pk.tier }}</span>
+                  <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.14em; color:#c9bfa8;">{{ pk.guests }}</span>
+                </div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:27px; color:#e9e2d3; margin-bottom:6px;">{{ pk.name }}</div>
+                <p style="margin:0 0 18px; font-size:13px; color:#c9bfa8; line-height:1.6;">{{ pk.blurb }}</p>
+                <div style="display:grid; gap:0; border-top:1px solid #3a312a; margin-bottom:22px;">
+                  <sc-for list="{{ pk.items }}" as="it" hint-placeholder-count="4">
+                    <div style="padding:10px 0 10px 18px; border-bottom:1px solid #3a312a; font-size:13px; color:#c9bfa8; position:relative;"><span style="position:absolute; left:0; top:16px; width:6px; height:6px; background:#d49152;"></span>{{ it }}</div>
+                  </sc-for>
+                </div>
+                <div style="margin-top:auto; display:flex; justify-content:space-between; align-items:baseline;">
+                  <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#c9bfa8;">{{ pk.priceLabel }}</span>
+                  <span style="font-family:'Cormorant Garamond',serif; font-size:26px; color:#e7b46a;">{{ pk.price }}</span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top:22px; border:1px solid #3a312a; background:#14110e; padding:20px 24px; display:flex; align-items:baseline; gap:24px; flex-wrap:wrap;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#d49152; flex:none;">Guest information</span>
+            <p style="margin:0; font-size:13px; color:#c9bfa8; line-height:1.6;">All lounge packages are designed for intimate groups of <span style="color:#e7b46a;">up to 15 guests</span>. For parties of more than 15, contact us for a custom inquiry so we can properly accommodate your event.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CIGAR ARTS -->
+      <section style="border-bottom:1px solid #3a312a; background:#14110e;">
+        <div style="max-width:1180px; margin:0 auto; padding:64px 32px;">
+          <div style="display:flex; align-items:baseline; gap:18px; margin-bottom:12px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.22em; color:#d49152;">03</span>
+            <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:400; color:#e9e2d3;">The art we <em style="color:#d49152; font-weight:300;">bring</em></h2>
+            <span style="flex:1; height:1px; background:#3a312a;"></span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#c9bfa8;">Taught at every event</span>
+          </div>
+          <p style="margin:0 0 36px; max-width:66ch; font-size:14px; color:#c9bfa8; line-height:1.7;">Every Flameline host teaches the same four-part technique — the difference between a cigar smoked and a cigar enjoyed. This is the expertise your guests take home.</p>
+          <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px;">
+            <sc-for list="{{ arts }}" as="art" hint-placeholder-count="4">
+              <div style="border:1px solid #3a312a; background:#0c0a08; padding:26px 22px;">
+                <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:30px; color:#d49152; line-height:1; margin-bottom:14px;">{{ art.num }}</div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:21px; color:#e9e2d3; margin-bottom:8px;">{{ art.name }}</div>
+                <p style="margin:0; font-size:12.5px; color:#c9bfa8; line-height:1.6;">{{ art.desc }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <!-- BOOKING FORM -->
+      <section style="border-bottom:1px solid #3a312a;">
+        <div style="max-width:1180px; margin:0 auto; padding:64px 32px; display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px;">
+          <div>
+            <div style="display:flex; align-items:baseline; gap:18px; margin-bottom:16px;">
+              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.22em; color:#d49152;">04</span>
+              <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:400; color:#e9e2d3;">Booking <em style="color:#d49152; font-weight:300;">inquiry</em></h2>
+            </div>
+            <p style="margin:0 0 18px; font-size:14px; color:#c9bfa8; line-height:1.7; max-width:44ch;">Tell us the occasion, the headcount and a date. We reply within one business day with availability and a tailored quote.</p>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:#c9bfa8; line-height:2.2;">
+              Response · <span style="color:#e7b46a;">Within 24 h</span><br>
+              Venue · <span style="color:#e7b46a;">Yxtobak Lounge · Borås</span><br>
+              Capacity · <span style="color:#e7b46a;">Up to 15 guests</span>
+            </div>
+          </div>
+          <div>
+            <sc-if value="{{ bookingSent }}" hint-placeholder-val="{{ false }}">
+              <div style="border:1px solid #3a4a2e; background:#14110e; padding:40px 36px; animation:fadeUp 0.4s ease both;">
+                <div style="width:7px; height:7px; border-radius:50%; background:#d49152; margin-bottom:18px; animation:emberPulse 2.6s ease-in-out infinite;"></div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:28px; color:#e9e2d3; margin-bottom:10px;">Inquiry received.</div>
+                <p style="margin:0 0 22px; font-size:14px; color:#c9bfa8; line-height:1.7;">Thank you — our events team will reach out within one business day with availability and a full quote.</p>
+                <button onClick="{{ resetBooking }}" style="cursor:pointer; background:none; border:1px solid #3a312a; color:#c9bfa8; padding:11px 18px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase;" style-hover="border-color:#b89968; color:#e7b46a;">Send another inquiry</button>
+              </div>
+            </sc-if>
+            <sc-if value="{{ bookingNotSent }}" hint-placeholder-val="{{ true }}">
+              <form onSubmit="{{ onBooking }}" style="border:1px solid #3a312a; background:#14110e; padding:32px 30px; display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+                <div>
+                  <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:#c9bfa8; margin-bottom:6px;">Your name *</label>
+                  <input ref="{{ bkName }}" type="text" placeholder="Anna Lind" style="width:100%; box-sizing:border-box; background:#0c0a08; border:1px solid #3a312a; color:#e9e2d3; padding:12px 14px; font-family:'Inter Tight',sans-serif; font-size:14px; outline:none;" style-focus="border-color:#d49152;">
+                </div>
+                <div>
+                  <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:#c9bfa8; margin-bottom:6px;">Company</label>
+                  <input ref="{{ bkCompany }}" type="text" placeholder="Nordkap AB" style="width:100%; box-sizing:border-box; background:#0c0a08; border:1px solid #3a312a; color:#e9e2d3; padding:12px 14px; font-family:'Inter Tight',sans-serif; font-size:14px; outline:none;" style-focus="border-color:#d49152;">
+                </div>
+                <div>
+                  <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:#c9bfa8; margin-bottom:6px;">E-mail *</label>
+                  <input ref="{{ bkEmail }}" type="text" placeholder="anna@nordkap.se" style="width:100%; box-sizing:border-box; background:#0c0a08; border:1px solid #3a312a; color:#e9e2d3; padding:12px 14px; font-family:'Inter Tight',sans-serif; font-size:14px; outline:none;" style-focus="border-color:#d49152;">
+                </div>
+                <div>
+                  <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:#c9bfa8; margin-bottom:6px;">Guests *</label>
+                  <input ref="{{ bkGuests }}" type="number" min="1" placeholder="18" style="width:100%; box-sizing:border-box; background:#0c0a08; border:1px solid #3a312a; color:#e9e2d3; padding:12px 14px; font-family:'Inter Tight',sans-serif; font-size:14px; outline:none;" style-focus="border-color:#d49152;">
+                </div>
+                <div>
+                  <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:#c9bfa8; margin-bottom:6px;">Preferred date *</label>
+                  <input ref="{{ bkDate }}" type="date" style="width:100%; box-sizing:border-box; background:#0c0a08; border:1px solid #3a312a; color:#e9e2d3; padding:11px 14px; font-family:'Inter Tight',sans-serif; font-size:14px; outline:none; color-scheme:dark;" style-focus="border-color:#d49152;">
+                </div>
+                <div>
+                  <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:#c9bfa8; margin-bottom:6px;">Package</label>
+                  <select ref="{{ bkPackage }}" style="width:100%; box-sizing:border-box; background:#0c0a08; border:1px solid #3a312a; color:#e9e2d3; padding:12px 14px; font-family:'Inter Tight',sans-serif; font-size:14px; outline:none;" style-focus="border-color:#d49152;">
+                    <option>Not sure yet</option>
+                    <option>Package 01 · The Discovery</option>
+                    <option>Package 02 · The Signature</option>
+                    <option>Package 03 · The Reserve</option>
+                    <option>Custom inquiry (16+ guests)</option>
+                  </select>
+                </div>
+                <div style="grid-column:1 / -1;">
+                  <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:#c9bfa8; margin-bottom:6px;">Anything else</label>
+                  <textarea ref="{{ bkMessage }}" rows="4" placeholder="Occasion, venue, dietary or accessibility notes…" style="width:100%; box-sizing:border-box; background:#0c0a08; border:1px solid #3a312a; color:#e9e2d3; padding:12px 14px; font-family:'Inter Tight',sans-serif; font-size:14px; outline:none; resize:vertical;" style-focus="border-color:#d49152;"></textarea>
+                </div>
+                <sc-if value="{{ hasBookingError }}" hint-placeholder-val="{{ false }}">
+                  <div style="grid-column:1 / -1; border-left:2px solid #8b2d20; padding:10px 14px; background:rgba(139,45,32,0.12); font-size:13px; color:#e7b46a;">{{ bookingError }}</div>
+                </sc-if>
+                <div style="grid-column:1 / -1; display:flex; justify-content:flex-end;">
+                  <button type="submit" style="cursor:pointer; background:#d49152; color:#0c0a08; border:none; padding:15px 28px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.18em; text-transform:uppercase;" style-hover="background:#e7b46a;">Send inquiry</button>
+                </div>
+              </form>
+            </sc-if>
+          </div>
+        </div>
+      </section>
+    </main>
+  </sc-if>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <sc-if value="{{ isExperience }}" hint-placeholder-val="{{ false }}">
+    <main data-screen-label="The Cigar Experience" style="animation:fadeUp 0.4s ease both;">
+      <section style="border-bottom:1px solid #3a312a;">
+        <div style="max-width:1180px; margin:0 auto; padding:72px 32px 60px;">
+          <p style="margin:0 0 16px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; color:#c9bfa8;">Culture &amp; education</p>
+          <h1 style="margin:0 0 20px; font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(44px,5vw,68px); line-height:1; color:#e9e2d3;">The cigar <em style="color:#d49152;">experience</em>.</h1>
+          <p style="margin:0; max-width:66ch; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:21px; color:#c9bfa8; line-height:1.5;">A handmade cigar is five hundred years of craft rolled into one object. Here is where it came from — and what it is made of.</p>
+        </div>
+      </section>
+
+      <!-- HISTORY -->
+      <section style="border-bottom:1px solid #3a312a;">
+        <div style="max-width:1180px; margin:0 auto; padding:64px 32px;">
+          <div style="display:flex; align-items:baseline; gap:18px; margin-bottom:38px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.22em; color:#d49152;">01</span>
+            <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:400; color:#e9e2d3;">History <em style="color:#d49152; font-weight:300;">&amp; origins</em></h2>
+            <span style="flex:1; height:1px; background:#3a312a;"></span>
+          </div>
+          <div style="display:grid; gap:0; position:relative; padding-left:40px;">
+            <div style="position:absolute; left:8px; top:8px; bottom:8px; width:1px; background:linear-gradient(180deg,#3a312a 0%,#d49152 12%,#3a312a 22%,#3a312a 100%);"></div>
+            <sc-for list="{{ history }}" as="h" hint-placeholder-count="5">
+              <div style="display:grid; grid-template-columns:130px 1fr; gap:28px; padding:22px 0; border-bottom:1px solid #3a312a; position:relative;">
+                <div style="position:absolute; left:-36px; top:30px; width:7px; height:7px; background:#d49152;"></div>
+                <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:#e7b46a; padding-top:5px;">{{ h.year }}</div>
+                <div>
+                  <div style="font-family:'Cormorant Garamond',serif; font-size:23px; color:#e9e2d3; margin-bottom:6px;">{{ h.title }}</div>
+                  <p style="margin:0; font-size:13.5px; color:#c9bfa8; line-height:1.65; max-width:72ch;">{{ h.desc }}</p>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <!-- ANATOMY -->
+      <section style="border-bottom:1px solid #3a312a; background:#14110e;">
+        <div style="max-width:1180px; margin:0 auto; padding:64px 32px;">
+          <div style="display:flex; align-items:baseline; gap:18px; margin-bottom:14px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.22em; color:#d49152;">02</span>
+            <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:400; color:#e9e2d3;">Anatomy of a <em style="color:#d49152; font-weight:300;">cigar</em></h2>
+            <span style="flex:1; height:1px; background:#3a312a;"></span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#c9bfa8;">Three leaves, one object</span>
+          </div>
+          <p style="margin:0 0 44px; max-width:66ch; font-size:14px; color:#c9bfa8; line-height:1.7;">Every handmade cigar is three kinds of leaf doing three different jobs — plus the cap you cut and the foot you light.</p>
+
+          <!-- diagram -->
+          <div style="position:relative; height:230px; margin-bottom:44px;">
+            <div style="position:absolute; left:8%; right:8%; top:92px; height:52px; border-radius:26px 10px 10px 26px; background:linear-gradient(180deg,#7a5531 0%,#6b4a2b 45%,#523823 100%); box-shadow:0 10px 30px rgba(0,0,0,0.5);"></div>
+            <div style="position:absolute; left:calc(8% + 44px); top:92px; height:52px; width:34px; background:linear-gradient(180deg,#e7b46a,#b89968); border-left:1px solid #0c0a08; border-right:1px solid #0c0a08; display:flex; align-items:center; justify-content:center;"><span style="font-family:'JetBrains Mono',monospace; font-size:7px; letter-spacing:0.1em; color:#0c0a08;">FL</span></div>
+            <div style="position:absolute; right:8%; top:92px; height:52px; width:14px; border-radius:0 10px 10px 0; background:repeating-linear-gradient(90deg,#3f2c1a 0px,#523823 3px,#3f2c1a 6px);"></div>
+            <div style="position:absolute; left:8%; top:12px; width:1px; height:80px; background:#3a312a;"></div>
+            <div style="position:absolute; left:calc(8% + 8px); top:6px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#e7b46a;">Cap <span style="color:#c9bfa8; text-transform:none; letter-spacing:0.02em;">— cut here, never bite</span></div>
+            <div style="position:absolute; left:calc(8% + 61px); top:32px; width:1px; height:60px; background:#3a312a;"></div>
+            <div style="position:absolute; left:calc(8% + 69px); top:26px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#e7b46a;">Band <span style="color:#c9bfa8; text-transform:none; letter-spacing:0.02em;">— the maker's signature</span></div>
+            <div style="position:absolute; left:50%; top:32px; width:1px; height:60px; background:#3a312a;"></div>
+            <div style="position:absolute; left:calc(50% + 8px); top:26px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#e7b46a;">Wrapper <span style="color:#c9bfa8; text-transform:none; letter-spacing:0.02em;">— the face &amp; much of the flavor</span></div>
+            <div style="position:absolute; right:8%; top:150px; width:1px; height:56px; background:#3a312a;"></div>
+            <div style="position:absolute; right:calc(8% + 10px); top:200px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#e7b46a; text-align:right;">Foot <span style="color:#c9bfa8; text-transform:none; letter-spacing:0.02em;">— toast, then light</span></div>
+            <div style="position:absolute; left:32%; top:150px; width:1px; height:40px; background:#3a312a;"></div>
+            <div style="position:absolute; left:calc(32% + 8px); top:186px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#e7b46a;">Binder &amp; filler <span style="color:#c9bfa8; text-transform:none; letter-spacing:0.02em;">— the engine inside</span></div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:14px;">
+            <sc-for list="{{ anatomy }}" as="an" hint-placeholder-count="3">
+              <div style="border:1px solid #3a312a; background:#0c0a08; padding:26px 22px;">
+                <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#d49152; margin-bottom:12px;">{{ an.role }}</div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#e9e2d3; margin-bottom:8px;">{{ an.name }}</div>
+                <p style="margin:0; font-size:13px; color:#c9bfa8; line-height:1.6;">{{ an.desc }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <!-- RAMIN -->
+      <section style="border-bottom:1px solid #3a312a;">
+        <div style="max-width:1180px; margin:0 auto; padding:64px 32px;">
+          <div style="display:flex; align-items:baseline; gap:18px; margin-bottom:38px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.22em; color:#d49152;">03</span>
+            <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:400; color:#e9e2d3;">How to enjoy cigars — <em style="color:#d49152; font-weight:300;">by Ramin</em></h2>
+            <span style="flex:1; height:1px; background:#3a312a;"></span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#c9bfa8;">Resident expert</span>
+          </div>
+          <div style="display:grid; grid-template-columns:280px 1fr; gap:48px; align-items:start;">
+            <div>
+              <div style="width:200px; height:200px;">
+                <image-slot id="ramin-portrait" shape="circle" placeholder="Ramin's portrait"></image-slot>
+              </div>
+              <p style="margin:18px 0 0; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#c9bfa8; line-height:2;">Ramin<br><span style="color:#e7b46a;">Resident cigar expert · Flameline</span></p>
+            </div>
+            <div>
+              <p style="margin:0 0 24px; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:22px; color:#c9bfa8; line-height:1.5; max-width:60ch;">"A cigar is not smoked against the clock. Choose it for the hour you have, pair it with what you love, and give it your full attention — that is the whole secret."</p>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                <sc-for list="{{ raminTips }}" as="tip" hint-placeholder-count="4">
+                  <div style="border:1px solid #3a312a; background:#14110e; padding:22px 22px;">
+                    <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#d49152; margin-bottom:10px;">{{ tip.label }}</div>
+                    <p style="margin:0; font-size:13px; color:#c9bfa8; line-height:1.65;">{{ tip.desc }}</p>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section style="border-bottom:1px solid #3a312a;">
+        <div style="max-width:1180px; margin:0 auto; padding:56px 32px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+          <p style="margin:0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:22px; color:#c9bfa8;">Want this taught live, at your table?</p>
+          <button onClick="{{ goEvents }}" style="cursor:pointer; background:none; border:1px solid #b89968; color:#e7b46a; padding:14px 22px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.18em; text-transform:uppercase;" style-hover="background:#d49152; border-color:#d49152; color:#0c0a08;">Book an event →</button>
+        </div>
+      </section>
+    </main>
+  </sc-if>
+
+  <!-- ============ BRANDS ============ -->
+  <sc-if value="{{ isBrands }}" hint-placeholder-val="{{ false }}">
+    <main data-screen-label="Brands" style="animation:fadeUp 0.4s ease both;">
+      <section style="border-bottom:1px solid #3a312a;">
+        <div style="max-width:1180px; margin:0 auto; padding:72px 32px 60px;">
+          <p style="margin:0 0 16px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; color:#c9bfa8;">The portfolio</p>
+          <h1 style="margin:0 0 20px; font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(44px,5vw,68px); line-height:1; color:#e9e2d3;">Two houses. One <em style="color:#d49152;">standard</em>.</h1>
+          <p style="margin:0; max-width:66ch; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:21px; color:#c9bfa8; line-height:1.5;">Flameline carries makers we would smoke ourselves — Nicaraguan-rooted, hand-rolled, consistent box after box.</p>
+        </div>
+      </section>
+
+      <!-- BRAND TABS -->
+      <section style="border-bottom:1px solid #3a312a; position:sticky; top:68px; z-index:50; background:rgba(12,10,8,0.94); backdrop-filter:blur(8px);">
+        <div style="max-width:1180px; margin:0 auto; padding:0 32px; display:flex; gap:0;">
+          <sc-for list="{{ brandTabs }}" as="bt" hint-placeholder-count="2">
+            <button onClick="{{ bt.go }}" style="cursor:pointer; background:none; border:none; border-bottom:2px solid {{ bt.border }}; padding:20px 34px 18px; display:flex; align-items:baseline; gap:12px;" style-hover="background:rgba(212,145,82,0.06);">
+              <span style="font-family:'Cormorant Garamond',serif; font-size:25px; color:{{ bt.color }};">{{ bt.label }}</span>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.16em; text-transform:uppercase; color:#6f6350;">{{ bt.count }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- ACTIVE BRAND -->
+      <section style="border-bottom:1px solid #3a312a;">
+        <div style="max-width:1180px; margin:0 auto; padding:56px 32px;">
+          <div style="display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px;">
+            <div>
+              <p style="margin:0 0 10px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; color:#d49152;">{{ brandKicker }}</p>
+              <h2 style="margin:0 0 16px; font-family:'Cormorant Garamond',serif; font-size:46px; font-weight:300; color:#e9e2d3;">{{ brandName }}</h2>
+              <p style="margin:0 0 16px; font-size:14px; color:#c9bfa8; line-height:1.7;">{{ brandDesc }}</p>
+              <div style="border:1px solid #3a312a; background:#14110e; padding:20px 22px;">
+                <p style="margin:0 0 8px; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.2em; text-transform:uppercase; color:#d49152;">Flavor arc</p>
+                <p style="margin:0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:18px; color:#c9bfa8; line-height:1.5;">{{ brandFlavor }}</p>
+                <p style="margin:12px 0 0; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:#c9bfa8;">{{ brandOrigins }}</p>
+              </div>
+            </div>
+            <div>
+              <p style="margin:0 0 14px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#c9bfa8;">The series we carry <span style="color:#d49152;">·</span> select one for details</p>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; align-content:start;">
+                <sc-for list="{{ seriesCards }}" as="sr" hint-placeholder-count="6">
+                  <button onClick="{{ sr.go }}" style="cursor:pointer; text-align:left; border:1px solid {{ sr.border }}; background:{{ sr.bg }}; padding:18px 18px;" style-hover="border-color:#b89968;">
+                    <div style="display:flex; justify-content:space-between; align-items:baseline; gap:10px;">
+                      <span style="font-family:'Cormorant Garamond',serif; font-size:20px; color:#e9e2d3;">{{ sr.name }}</span>
+                      <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:{{ sr.arrowColor }};">{{ sr.arrow }}</span>
+                    </div>
+                    <div style="font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.14em; text-transform:uppercase; color:#d49152; margin-top:5px;">{{ sr.body }}</div>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <!-- SERIES DETAIL -->
+          <sc-if value="{{ hasSeries }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:36px; border:1px solid #b89968; background:#14110e; padding:36px 34px; animation:fadeUp 0.35s ease both;">
+              <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:24px; margin-bottom:22px;">
+                <div>
+                  <p style="margin:0 0 6px; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.2em; text-transform:uppercase; color:#d49152;">{{ selKicker }}</p>
+                  <h3 style="margin:0; font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:400; color:#e9e2d3;">{{ selName }}</h3>
+                </div>
+                <button onClick="{{ closeSeries }}" style="cursor:pointer; flex:none; background:none; border:1px solid #3a312a; color:#c9bfa8; padding:9px 16px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase;" style-hover="border-color:#b89968; color:#e7b46a;">Close ×</button>
+              </div>
+              <div style="display:grid; grid-template-columns:1.2fr 0.8fr; gap:40px;">
+                <p style="margin:0; font-size:14px; color:#c9bfa8; line-height:1.75;">{{ selDesc }}</p>
+                <div style="display:grid; gap:0; border-top:1px solid #3a312a; align-content:start;">
+                  <div style="display:grid; grid-template-columns:110px 1fr; gap:14px; padding:11px 0; border-bottom:1px solid #3a312a;">
+                    <span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:#d49152; padding-top:2px;">Body</span>
+                    <span style="font-size:13px; color:#e9e2d3;">{{ selBody }}</span>
+                  </div>
+                  <div style="display:grid; grid-template-columns:110px 1fr; gap:14px; padding:11px 0; border-bottom:1px solid #3a312a;">
+                    <span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:#d49152; padding-top:2px;">Wrapper</span>
+                    <span style="font-size:13px; color:#e9e2d3;">{{ selWrapper }}</span>
+                  </div>
+                  <div style="display:grid; grid-template-columns:110px 1fr; gap:14px; padding:11px 0; border-bottom:1px solid #3a312a;">
+                    <span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:#d49152; padding-top:2px;">Notes</span>
+                    <span style="font-size:13px; color:#e9e2d3;">{{ selNotes }}</span>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top:26px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; border-top:1px solid #3a312a; padding-top:22px;">
+                <p style="margin:0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:18px; color:#c9bfa8;">Interested in carrying {{ selName }}?</p>
+                <button onClick="{{ scrollToInquiry }}" style="cursor:pointer; background:#d49152; color:#0c0a08; border:none; padding:13px 24px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.18em; text-transform:uppercase;" style-hover="background:#e7b46a;">Send an inquiry ↓</button>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </section>
+
+      <!-- INQUIRY -->
+      <section id="brand-inquiry" style="border-bottom:1px solid #3a312a; background:#14110e;">
+        <div style="max-width:1180px; margin:0 auto; padding:64px 32px; display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px;">
+          <div>
+            <h2 style="margin:0 0 14px; font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:400; color:#e9e2d3;">General <em style="color:#d49152; font-weight:300;">inquiries</em></h2>
+            <p style="margin:0; font-size:14px; color:#c9bfa8; line-height:1.7; max-width:44ch;">Interested in carrying these lines, availability, or anything else in the portfolio? Write to us — retailers and lounges can also apply for portal access here.</p>
+          </div>
+          <div>
+            <sc-if value="{{ inquirySent }}" hint-placeholder-val="{{ false }}">
+              <div style="border:1px solid #3a4a2e; background:#14110e; padding:36px 32px; animation:fadeUp 0.4s ease both;">
+                <div style="font-family:'Cormorant Garamond',serif; font-size:26px; color:#e9e2d3; margin-bottom:8px;">Message sent.</div>
+                <p style="margin:0; font-size:14px; color:#c9bfa8;">We reply within one business day.</p>
+              </div>
+            </sc-if>
+            <sc-if value="{{ inquiryNotSent }}" hint-placeholder-val="{{ true }}">
+              <form onSubmit="{{ onInquiry }}" style="border:1px solid #3a312a; background:#14110e; padding:30px 28px; display:grid; gap:14px;">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+                  <div>
+                    <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:#c9bfa8; margin-bottom:6px;">Your name *</label>
+                    <input ref="{{ inqName }}" type="text" placeholder="Erik Ström" style="width:100%; box-sizing:border-box; background:#0c0a08; border:1px solid #3a312a; color:#e9e2d3; padding:12px 14px; font-family:'Inter Tight',sans-serif; font-size:14px; outline:none;" style-focus="border-color:#d49152;">
+                  </div>
+                  <div>
+                    <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:#c9bfa8; margin-bottom:6px;">E-mail *</label>
+                    <input ref="{{ inqEmail }}" type="text" placeholder="erik@lounge.se" style="width:100%; box-sizing:border-box; background:#0c0a08; border:1px solid #3a312a; color:#e9e2d3; padding:12px 14px; font-family:'Inter Tight',sans-serif; font-size:14px; outline:none;" style-focus="border-color:#d49152;">
+                  </div>
+                </div>
+                <div>
+                  <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:#c9bfa8; margin-bottom:6px;">Message *</label>
+                  <textarea ref="{{ inqMessage }}" rows="4" placeholder="I'd like to know more about…" style="width:100%; box-sizing:border-box; background:#0c0a08; border:1px solid #3a312a; color:#e9e2d3; padding:12px 14px; font-family:'Inter Tight',sans-serif; font-size:14px; outline:none; resize:vertical;" style-focus="border-color:#d49152;"></textarea>
+                </div>
+                <sc-if value="{{ hasInquiryError }}" hint-placeholder-val="{{ false }}">
+                  <div style="border-left:2px solid #8b2d20; padding:10px 14px; background:rgba(139,45,32,0.12); font-size:13px; color:#e7b46a;">{{ inquiryError }}</div>
+                </sc-if>
+                <div style="display:flex; justify-content:flex-end;">
+                  <button type="submit" style="cursor:pointer; background:#d49152; color:#0c0a08; border:none; padding:14px 26px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.18em; text-transform:uppercase;" style-hover="background:#e7b46a;">Send message</button>
+                </div>
+              </form>
+            </sc-if>
+          </div>
+        </div>
+      </section>
+    </main>
+  </sc-if>
+
+  <!-- ============ B2B ============ -->
+  <sc-if value="{{ isB2B }}" hint-placeholder-val="{{ false }}">
+    <main data-screen-label="B2B Portal" style="animation:fadeUp 0.4s ease both;">
+
+      <!-- LOGIN -->
+      <sc-if value="{{ showLogin }}" hint-placeholder-val="{{ true }}">
+        <section style="min-height:70vh; display:flex; align-items:center; justify-content:center; padding:72px 32px;">
+          <div style="max-width:440px; width:100%;">
+            <div style="text-align:center; margin-bottom:28px;">
+              <p style="margin:0 0 8px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; color:#d49152;">Trade only · B2B</p>
+              <h1 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:300; font-size:42px; color:#e9e2d3;">Partner <em style="color:#d49152;">login</em></h1>
+            </div>
+            <div style="border:1px solid #b89968; background:rgba(212,145,82,0.07); padding:16px 20px; margin-bottom:16px;">
+              <p style="margin:0; font-size:13px; color:#e9e2d3; line-height:1.65;"><span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:#e7b46a;">Distributors only</span><br>This portal is for distributors. Private individuals — please visit <a href="https://yxtobak.se" target="_blank" style="color:#e7b46a; text-decoration:underline;">yxtobak.se</a>.</p>
+            </div>
+            <form onSubmit="{{ onLogin }}" style="border:1px solid #3a312a; background:#14110e; padding:34px 32px; display:grid; gap:16px;">
+              <div>
+                <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:#c9bfa8; margin-bottom:6px;">Partner e-mail</label>
+                <input ref="{{ loginEmail }}" type="text" placeholder="you@yourshop.se" style="width:100%; box-sizing:border-box; background:#0c0a08; border:1px solid #3a312a; color:#e9e2d3; padding:13px 14px; font-family:'Inter Tight',sans-serif; font-size:14px; outline:none;" style-focus="border-color:#d49152;">
+              </div>
+              <div>
+                <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:#c9bfa8; margin-bottom:6px;">Password</label>
+                <input ref="{{ loginPass }}" type="password" placeholder="••••••••" style="width:100%; box-sizing:border-box; background:#0c0a08; border:1px solid #3a312a; color:#e9e2d3; padding:13px 14px; font-family:'Inter Tight',sans-serif; font-size:14px; outline:none;" style-focus="border-color:#d49152;">
+              </div>
+              <sc-if value="{{ hasLoginError }}" hint-placeholder-val="{{ false }}">
+                <div style="border-left:2px solid #8b2d20; padding:10px 14px; background:rgba(139,45,32,0.12); font-size:13px; color:#e7b46a;">{{ loginError }}</div>
+              </sc-if>
+              <button type="submit" style="cursor:pointer; background:#d49152; color:#0c0a08; border:none; padding:15px 20px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase;" style-hover="background:#e7b46a;">Sign in</button>
+              <p style="margin:0; text-align:center; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.12em; color:#6f6350;">DEMO · any e-mail + password of 4+ characters</p>
+            </form>
+            <p style="margin:18px 0 0; text-align:center; font-size:13px; color:#c9bfa8;">For a login code, contact <a href="mailto:info@flameline.se" style="color:#e7b46a; text-decoration:underline;">info@flameline.se</a></p>
+            <p style="margin:10px 0 0; text-align:center; font-size:13px; color:#c9bfa8;">Not a partner yet? <button onClick="{{ goBrands }}" style="cursor:pointer; background:none; border:none; padding:0; color:#e7b46a; font-size:13px; font-family:'Inter Tight',sans-serif; text-decoration:underline;">Apply via general inquiry</button></p>
+          </div>
+        </section>
+      </sc-if>
+
+      <!-- PORTAL -->
+      <sc-if value="{{ showPortal }}" hint-placeholder-val="{{ false }}">
+        <section style="border-bottom:1px solid #3a312a;">
+          <div style="max-width:1180px; margin:0 auto; padding:56px 32px 44px; display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+            <div>
+              <p style="margin:0 0 12px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; color:#d49152;">Wholesale portal · Trade only</p>
+              <h1 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:300; font-size:52px; line-height:1; color:#e9e2d3;">Welcome back, <em style="color:#d49152;">partner</em>.</h1>
+            </div>
+            <button onClick="{{ logout }}" style="cursor:pointer; background:none; border:1px solid #3a312a; color:#c9bfa8; padding:11px 18px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase;" style-hover="border-color:#8b2d20; color:#e7b46a;">Sign out</button>
+          </div>
+        </section>
+
+        <!-- ORDER CONFIRMATION -->
+        <sc-if value="{{ hasPlacedOrder }}" hint-placeholder-val="{{ false }}">
+          <section style="border-bottom:1px solid #3a312a; background:#14110e;">
+            <div style="max-width:1180px; margin:0 auto; padding:44px 32px;">
+              <div style="border:1px solid #3a4a2e; background:#0c0a08; padding:36px 34px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; animation:fadeUp 0.4s ease both;">
+                <div>
+                  <p style="margin:0 0 6px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#d49152;">Order placed</p>
+                  <div style="font-family:'Cormorant Garamond',serif; font-size:30px; color:#e9e2d3;">Order {{ placedNo }} confirmed.</div>
+                  <p style="margin:8px 0 0; font-size:13.5px; color:#c9bfa8;">{{ placedSummary }} · Delivery note and invoice follow by e-mail. Dispatch within 3 business days.</p>
+                </div>
+                <button onClick="{{ dismissOrder }}" style="cursor:pointer; background:none; border:1px solid #3a312a; color:#c9bfa8; padding:12px 20px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase;" style-hover="border-color:#b89968; color:#e7b46a;">New order</button>
+              </div>
+            </div>
+          </section>
+        </sc-if>
+
+        <!-- PRICE LIST + ORDER -->
+        <section style="border-bottom:1px solid #3a312a;">
+          <div style="max-width:1180px; margin:0 auto; padding:56px 32px;">
+            <div style="display:flex; align-items:baseline; gap:18px; margin-bottom:10px;">
+              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.22em; color:#d49152;">01</span>
+              <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:400; color:#e9e2d3;">Distributor <em style="color:#d49152; font-weight:300;">price list</em></h2>
+              <span style="flex:1; height:1px; background:#3a312a;"></span>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#c9bfa8;">SEK / box · Excl. VAT &amp; excise</span>
+            </div>
+            <p style="margin:0 0 28px; font-size:13.5px; color:#c9bfa8;">Add quantities below and place the order directly — volume rebates of 4% from 10 boxes and 8% from 25 boxes apply automatically at invoicing.</p>
+
+            <div style="border:1px solid #3a312a;">
+              <div style="display:grid; grid-template-columns:80px 1.5fr 1fr 70px 120px 150px 120px; gap:12px; padding:12px 18px; background:#14110e; border-bottom:1px solid #3a312a; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.16em; text-transform:uppercase; color:#d49152;">
+                <div>SKU</div><div>Line</div><div>Vitola · Size</div><div>Box</div><div style="text-align:right;">Price / box</div><div style="text-align:center;">Quantity</div><div style="text-align:right;">Total</div>
+              </div>
+              <sc-for list="{{ rows }}" as="r" hint-placeholder-count="10">
+                <div style="display:grid; grid-template-columns:80px 1.5fr 1fr 70px 120px 150px 120px; gap:12px; padding:13px 18px; border-bottom:1px solid #241f19; align-items:center; background:{{ r.bg }};">
+                  <div style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#b89968;">{{ r.sku }}</div>
+                  <div><span style="font-size:13.5px; color:#e9e2d3;">{{ r.line }}</span><span style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:#6f6350; margin-left:8px;">{{ r.brand }}</span></div>
+                  <div style="font-size:12.5px; color:#c9bfa8;">{{ r.vitola }}</div>
+                  <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#c9bfa8;">{{ r.box }}</div>
+                  <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#e7b46a; text-align:right;">{{ r.priceFmt }}</div>
+                  <div style="display:flex; align-items:center; justify-content:center; gap:0;">
+                    <button onClick="{{ r.dec }}" style="cursor:pointer; width:30px; height:30px; background:none; border:1px solid #3a312a; color:#c9bfa8; font-size:15px; line-height:1;" style-hover="border-color:#b89968; color:#e7b46a;">−</button>
+                    <span style="width:44px; text-align:center; font-family:'JetBrains Mono',monospace; font-size:12px; color:{{ r.qtyColor }};">{{ r.qty }}</span>
+                    <button onClick="{{ r.inc }}" style="cursor:pointer; width:30px; height:30px; background:none; border:1px solid #3a312a; color:#c9bfa8; font-size:15px; line-height:1;" style-hover="border-color:#b89968; color:#e7b46a;">+</button>
+                  </div>
+                  <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:{{ r.totalColor }}; text-align:right;">{{ r.totalFmt }}</div>
+                </div>
+              </sc-for>
+            </div>
+
+            <!-- ORDER SUMMARY -->
+            <div style="margin-top:22px; border:1px solid #3a312a; background:#14110e; padding:24px 28px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+              <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:#c9bfa8;">{{ orderSummary }}</div>
+              <div style="display:flex; align-items:center; gap:22px;">
+                <div style="font-family:'Cormorant Garamond',serif; font-size:28px; color:#e7b46a;">{{ orderTotalFmt }}</div>
+                <sc-if value="{{ hasOrder }}" hint-placeholder-val="{{ false }}">
+                  <button onClick="{{ placeOrder }}" style="cursor:pointer; background:#d49152; color:#0c0a08; border:none; padding:15px 28px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.18em; text-transform:uppercase;" style-hover="background:#e7b46a;">Place order</button>
+                </sc-if>
+                <sc-if value="{{ noOrder }}" hint-placeholder-val="{{ true }}">
+                  <span style="border:1px solid #3a312a; color:#6f6350; padding:15px 28px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.18em; text-transform:uppercase;">Place order</span>
+                </sc-if>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- EVENT WHOLESALE -->
+        <section style="border-bottom:1px solid #3a312a; background:#14110e;">
+          <div style="max-width:1180px; margin:0 auto; padding:56px 32px;">
+            <div style="display:flex; align-items:baseline; gap:18px; margin-bottom:28px;">
+              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.22em; color:#d49152;">02</span>
+              <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:400; color:#e9e2d3;">Corporate event <em style="color:#d49152; font-weight:300;">wholesale rates</em></h2>
+              <span style="flex:1; height:1px; background:#3a312a;"></span>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#c9bfa8;">Partner resale pricing</span>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:14px;">
+              <sc-for list="{{ wholesalePkgs }}" as="wp" hint-placeholder-count="3">
+                <div style="border:1px solid #3a312a; background:#0c0a08; padding:28px 26px;">
+                  <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px;">
+                    <span style="font-family:'Cormorant Garamond',serif; font-size:23px; color:#e9e2d3;">{{ wp.name }}</span>
+                    <span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.14em; color:#c9bfa8;">{{ wp.min }}</span>
+                  </div>
+                  <div style="display:flex; align-items:baseline; gap:8px; margin-bottom:16px;">
+                    <span style="font-family:'Cormorant Garamond',serif; font-size:30px; color:#e7b46a;">{{ wp.rate }}</span>
+                    <span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.14em; text-transform:uppercase; color:#c9bfa8;">/ guest</span>
+                  </div>
+                  <div style="border-top:1px solid #3a312a;">
+                    <sc-for list="{{ wp.items }}" as="wi" hint-placeholder-count="4">
+                      <div style="padding:9px 0 9px 16px; border-bottom:1px solid #241f19; font-size:12.5px; color:#c9bfa8; position:relative;"><span style="position:absolute; left:0; top:14px; width:5px; height:5px; background:#d49152;"></span>{{ wi }}</div>
+                    </sc-for>
+                  </div>
+                  <p style="margin:14px 0 0; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.12em; text-transform:uppercase; color:#6f6350;">{{ wp.margin }}</p>
+                </div>
+              </sc-for>
+            </div>
+            <p style="margin:24px 0 0; font-size:13px; color:#c9bfa8;">To book event inventory against these rates, include the package name in your order note or contact your account manager — <span style="color:#e7b46a;">trade@flameline.se</span>.</p>
+          </div>
+        </section>
+      </sc-if>
+    </main>
+  </sc-if>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="border-top:1px solid #3a312a; background:#0c0a08;">
+    <div style="max-width:1180px; margin:0 auto; padding:44px 32px; display:flex; justify-content:space-between; align-items:center; gap:18px; flex-wrap:wrap;">
+      <div style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:19px; letter-spacing:0.26em; color:#e7b46a; text-transform:uppercase;">Flameline</div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:#6f6350; text-align:center;">Borås · Sjuhärad · Sverige · trade@flameline.se</div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:#6f6350;">18+ · Tobacco products · <span style="color:#8b2d20;">Smoking harms your health</span></div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showAgeGate&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;},&quot;startLoggedIn&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: 'home',
+      brandTab: 'horacio',
+      seriesIdx: null,
+      ageOk: false,
+      loggedIn: !!props.startLoggedIn,
+      loginError: '',
+      bookingSent: false, bookingError: '',
+      inquirySent: false, inquiryError: '',
+      qty: {},
+      placed: null
+    };
+    const mk = () => React.createRef();
+    this.r = {
+      loginEmail: mk(), loginPass: mk(),
+      bkName: mk(), bkCompany: mk(), bkEmail: mk(), bkGuests: mk(), bkDate: mk(), bkPackage: mk(), bkMessage: mk(),
+      inqName: mk(), inqEmail: mk(), inqMessage: mk()
+    };
+    this.catalog = [
+      { sku: 'HO-MA', brand: 'Horacio', line: 'Maduro', vitola: 'Robusto · 5×52', box: 20, price: 2980 },
+      { sku: 'HO-CL', brand: 'Horacio', line: 'Classic', vitola: 'Petit Robusto · 4×50', box: 20, price: 2680 },
+      { sku: 'HO-HE', brand: 'Horacio', line: 'Heritage', vitola: 'Toro · 6×54', box: 20, price: 3480 },
+      { sku: 'HO-PA', brand: 'Horacio', line: 'Pasión', vitola: 'Lancero · 7×40', box: 20, price: 3120 },
+      { sku: 'HO-CO', brand: 'Horacio', line: 'Colloso', vitola: 'Gordo · 6×60', box: 10, price: 3890 },
+      { sku: 'BA-DC', brand: 'Barreda', line: 'Don Chico', vitola: 'Robusto · 5×50', box: 20, price: 2540 },
+      { sku: 'BA-HE', brand: 'Barreda', line: 'Habano Ecuador', vitola: 'Toro · 6×52', box: 20, price: 2760 },
+      { sku: 'BA-MA', brand: 'Barreda', line: 'Maduro', vitola: 'Robusto · 5×50', box: 20, price: 2620 },
+      { sku: 'BA-21', brand: 'Barreda', line: '021', vitola: 'Toro · 6×52', box: 20, price: 2880 },
+      { sku: 'BA-VS', brand: 'Barreda', line: 'Vega Suprema Pro', vitola: 'Churchill · 7×48', box: 20, price: 3650 },
+      { sku: 'BA-P10', brand: 'Barreda', line: 'Plotes Reservado No.10', vitola: 'Perfecto · 5.5×54', box: 10, price: 4250 }
+    ];
+    this.brands = {
+      horacio: {
+        kicker: 'House 01 · Est. 2008 · Switzerland → Estelí',
+        name: 'Horacio',
+        desc: 'Founded by three French cigar enthusiasts, Horacio moved its manufacturing from Costa Rica to Estelí, Nicaragua, to sit at the source of the region\u2019s exceptional tobacco. Fillers are rolled entubado and empalmado — a firm pack with an excellent draw, every time.',
+        flavor: 'Pepper, leather & coffee → woody nuances of nut & honey.',
+        origins: 'Origins · Nicaragua · Costa Rica · Ecuador',
+        series: [
+          { name: 'Maduro', body: 'Medium – Full', wrapper: 'Dark Maduro', notes: 'Dark cocoa · Sweet earth · Espresso', desc: 'The house\u2019s darker expression — a rich Maduro wrapper over Nicaraguan filler brings deeper sweet notes and a fuller body while keeping the Horacio signature draw.' },
+          { name: 'Classic', body: 'Medium', wrapper: 'Ecuadorian Colorado', notes: 'Wood · Subtle spice · Honey', desc: 'The flagship series and the purest statement of the house style: woody, subtly spicy and endlessly consistent, box after box.' },
+          { name: 'Heritage', body: 'Medium – Full', wrapper: 'Selected dark wrappers', notes: 'Leather · Toasted nut · Cream', desc: 'The house\u2019s tribute line — richer blends built on aged Estelí leaf, made for slow evenings and experienced palates.' },
+          { name: 'Pasión', body: 'Mild – Medium', wrapper: 'Ecuadorian Habano', notes: 'Cedar · Floral · Soft pepper', desc: 'The elegant end of the portfolio — slender formats led by the Lancero, favoring finesse and aroma over raw strength.' },
+          { name: 'Colloso', body: 'Full', wrapper: 'Oily dark Habano', notes: 'Black pepper · Oak · Molasses', desc: 'The big-ring statement series — generous vitolas with a slow, cool burn and the fullest flavor in the Horacio line.' }
+        ]
+      },
+      barreda: {
+        kicker: 'House 02 · Est. 2012 · Estelí, Nicaragua',
+        name: 'Barreda',
+        desc: 'A family house founded by Oscar Barreda in honor of his grandfather Francisco — \u201cDon Chico\u201d — a prominent tobacco plantation owner. Strictly high-grade Nicaraguan leaf from Estelí, Jalapa, Condega and Ometepe, with Indonesian binders and wrappers from Ecuador to San Andrés.',
+        flavor: 'Earth & roasted coffee → dark chocolate & cocoa.',
+        origins: 'Origins · Estelí · Jalapa · Condega · Ometepe',
+        series: [
+          { name: 'Don Chico', body: 'Medium – Full', wrapper: 'San Andrés', notes: 'Earth · Roasted coffee · Dark chocolate', desc: 'The flagship, named for Don Chico himself — the family blend that defines the house: earthy, generous and unmistakably Nicaraguan.' },
+          { name: 'Habano Ecuador', body: 'Medium', wrapper: 'Ecuadorian Habano', notes: 'Roasted coffee · Nuts · Chocolate', desc: 'An Ecuadorian Habano wrapper over Indonesian binder and Nicaraguan filler — smooth, balanced and remarkably consistent.' },
+          { name: 'Maduro', body: 'Full', wrapper: 'San Andrés Maduro', notes: 'Cocoa · Dark earth · Sweet spice', desc: 'The darkest blend in the portfolio — a slow-fermented Maduro wrapper delivering deep sweetness and full Estelí strength.' },
+          { name: '021', body: 'Medium – Full', wrapper: 'Ecuadorian Habano', notes: 'Coffee · Nut · Chocolate', desc: 'The modern line — a clean, contemporary blend built for consistency, smooth from first light to the final third.' },
+          { name: 'Vega Suprema Pro', body: 'Medium – Full', wrapper: 'Selected prime leaf', notes: 'Cedar · Cream · Baking spice', desc: 'A premium selection rolled from the estate\u2019s top primings — the grower\u2019s house showing what its best fields can do.' },
+          { name: 'Plotes Reservado No.10', body: 'Full', wrapper: 'Aged reserve wrapper', notes: 'Leather · Espresso · Dried fruit', desc: 'The small-batch reserve — limited-run vitolas from aged inventory, released in numbered batches for true aficionados.' }
+        ]
+      }
+    };
+  }
+
+  componentDidMount() {
+    try {
+      if (localStorage.getItem('flameline_age_ok') === '1') this.setState({ ageOk: true });
+    } catch (e) {}
+  }
+
+  go(p) {
+    this.setState({ page: p, loginError: '' });
+    try { window.scrollTo(0, 0); } catch (e) {}
+  }
+
+  fmt(n) {
+    return n.toLocaleString('sv-SE').replace(/\u00a0/g, ' ') + ' kr';
+  }
+
+  val(ref) {
+    return ref.current ? String(ref.current.value || '').trim() : '';
+  }
+
+  renderVals() {
+    const s = this.state;
+    const showAgeGate = this.props.showAgeGate ?? true;
+    const pages = [
+      { key: 'home', label: 'Home' },
+      { key: 'events', label: 'Events' },
+      { key: 'experience', label: 'The Experience' },
+      { key: 'brands', label: 'Brands' }
+    ];
+    const navItems = pages.map(p => ({
+      label: p.label,
+      go: () => this.go(p.key),
+      color: s.page === p.key ? '#e7b46a' : '#c9bfa8',
+      border: s.page === p.key ? '#d49152' : 'transparent'
+    }));
+
+    const rows = this.catalog.map(c => {
+      const q = s.qty[c.sku] || 0;
+      return {
+        ...c,
+        priceFmt: this.fmt(c.price),
+        qty: q,
+        qtyColor: q > 0 ? '#e7b46a' : '#6f6350',
+        totalColor: q > 0 ? '#e9e2d3' : '#3a312a',
+        totalFmt: q > 0 ? this.fmt(q * c.price) : '—',
+        bg: q > 0 ? 'rgba(212,145,82,0.05)' : 'transparent',
+        inc: () => this.setState(st => ({ qty: { ...st.qty, [c.sku]: (st.qty[c.sku] || 0) + 1 } })),
+        dec: () => this.setState(st => ({ qty: { ...st.qty, [c.sku]: Math.max(0, (st.qty[c.sku] || 0) - 1) } }))
+      };
+    });
+    const selected = rows.filter(r => r.qty > 0);
+    const boxes = selected.reduce((a, r) => a + r.qty, 0);
+    const total = selected.reduce((a, r) => a + r.qty * r.price, 0);
+
+    const brand = this.brands[s.brandTab];
+    const brandTabs = ['horacio', 'barreda'].map(k => ({
+      label: this.brands[k].name,
+      count: this.brands[k].series.length + ' series',
+      go: () => this.setState({ brandTab: k, seriesIdx: null }),
+      color: s.brandTab === k ? '#e7b46a' : '#c9bfa8',
+      border: s.brandTab === k ? '#d49152' : 'transparent'
+    }));
+    const seriesCards = brand.series.map((sr, i) => {
+      const active = s.seriesIdx === i;
+      return {
+        name: sr.name,
+        body: sr.body,
+        arrow: active ? '−' : '+',
+        arrowColor: active ? '#e7b46a' : '#6f6350',
+        border: active ? '#b89968' : '#3a312a',
+        bg: active ? 'rgba(212,145,82,0.07)' : '#14110e',
+        go: () => this.setState(st => ({ seriesIdx: st.seriesIdx === i ? null : i }))
+      };
+    });
+    const sel = s.seriesIdx != null ? brand.series[s.seriesIdx] : null;
+
+    return {
+      // brands
+      brandTabs,
+      brandKicker: brand.kicker,
+      brandName: brand.name,
+      brandDesc: brand.desc,
+      brandFlavor: brand.flavor,
+      brandOrigins: brand.origins,
+      seriesCards,
+      hasSeries: !!sel,
+      selKicker: sel ? brand.name + ' · Series' : '',
+      selName: sel ? sel.name : '',
+      selBody: sel ? sel.body : '',
+      selWrapper: sel ? sel.wrapper : '',
+      selNotes: sel ? sel.notes : '',
+      selDesc: sel ? sel.desc : '',
+      closeSeries: () => this.setState({ seriesIdx: null }),
+      scrollToInquiry: () => {
+        try {
+          const el = document.getElementById('brand-inquiry');
+          if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' });
+        } catch (e) {}
+      },
+      // gate
+      showGate: showAgeGate && !s.ageOk,
+      enterSite: () => {
+        this.setState({ ageOk: true });
+        try { localStorage.setItem('flameline_age_ok', '1'); } catch (e) {}
+      },
+
+      // nav
+      navItems,
+      goHome: () => this.go('home'),
+      goEvents: () => this.go('events'),
+      goExperience: () => this.go('experience'),
+      goBrands: () => this.go('brands'),
+      goB2B: () => this.go('b2b'),
+      b2bNavLabel: s.loggedIn ? 'B2B Portal' : 'B2B Login',
+
+      // page flags
+      isHome: s.page === 'home',
+      isEvents: s.page === 'events',
+      isExperience: s.page === 'experience',
+      isBrands: s.page === 'brands',
+      isB2B: s.page === 'b2b',
+
+      // refs
+      ...Object.fromEntries(Object.entries(this.r).map(([k, v]) => [k, v])),
+
+      // login
+      showLogin: !s.loggedIn,
+      showPortal: s.loggedIn,
+      hasLoginError: !!s.loginError,
+      loginError: s.loginError,
+      onLogin: (e) => {
+        e.preventDefault();
+        const em = this.val(this.r.loginEmail);
+        const pw = this.r.loginPass.current ? this.r.loginPass.current.value : '';
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) return this.setState({ loginError: 'Enter a valid partner e-mail address.' });
+        if (pw.length < 4) return this.setState({ loginError: 'Password must be at least 4 characters.' });
+        this.setState({ loggedIn: true, loginError: '' });
+        try { window.scrollTo(0, 0); } catch (err) {}
+      },
+      logout: () => this.setState({ loggedIn: false, placed: null, qty: {} }),
+
+      // booking
+      bookingSent: s.bookingSent,
+      bookingNotSent: !s.bookingSent,
+      hasBookingError: !!s.bookingError,
+      bookingError: s.bookingError,
+      resetBooking: () => this.setState({ bookingSent: false, bookingError: '' }),
+      onBooking: (e) => {
+        e.preventDefault();
+        const name = this.val(this.r.bkName);
+        const email = this.val(this.r.bkEmail);
+        const guests = parseInt(this.val(this.r.bkGuests), 10);
+        const date = this.val(this.r.bkDate);
+        if (!name) return this.setState({ bookingError: 'Please enter your name.' });
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return this.setState({ bookingError: 'Please enter a valid e-mail address.' });
+        if (!guests || guests < 1) return this.setState({ bookingError: 'Please enter the number of guests.' });
+        if (!date) return this.setState({ bookingError: 'Please choose a preferred date.' });
+        this.setState({ bookingSent: true, bookingError: '' });
+      },
+
+      // inquiry
+      inquirySent: s.inquirySent,
+      inquiryNotSent: !s.inquirySent,
+      hasInquiryError: !!s.inquiryError,
+      inquiryError: s.inquiryError,
+      onInquiry: (e) => {
+        e.preventDefault();
+        const name = this.val(this.r.inqName);
+        const email = this.val(this.r.inqEmail);
+        const msg = this.val(this.r.inqMessage);
+        if (!name) return this.setState({ inquiryError: 'Please enter your name.' });
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return this.setState({ inquiryError: 'Please enter a valid e-mail address.' });
+        if (!msg) return this.setState({ inquiryError: 'Please write a short message.' });
+        this.setState({ inquirySent: true, inquiryError: '' });
+      },
+
+      // portal
+      rows,
+      hasOrder: boxes > 0,
+      noOrder: boxes === 0,
+      orderSummary: boxes === 0 ? 'No boxes selected yet' : boxes + ' box' + (boxes === 1 ? '' : 'es') + ' · ' + selected.length + ' line' + (selected.length === 1 ? '' : 's'),
+      orderTotalFmt: boxes === 0 ? '—' : this.fmt(total),
+      placeOrder: () => {
+        const no = 'FL-' + String(Date.now()).slice(-6);
+        this.setState({ placed: { no, summary: boxes + ' boxes · ' + this.fmt(total) }, qty: {} });
+        try { window.scrollTo(0, 0); } catch (e) {}
+      },
+      hasPlacedOrder: !!s.placed,
+      placedNo: s.placed ? s.placed.no : '',
+      placedSummary: s.placed ? s.placed.summary : '',
+      dismissOrder: () => this.setState({ placed: null }),
+
+      // content data
+      eventPackages: [
+        {
+          tier: 'Package 01', name: 'The Discovery', guests: 'Up to 15 guests', borderCol: '#3a312a',
+          blurb: 'An approachable, guided introduction to the world of cigars, hosted in the comfort of our lounge. Ideal for beginners and introductory client dinners.',
+          items: ['Milder cigars selected for newer palates', 'Beginner-friendly blind tasting — foundational tastes & aromas', 'Full instruction: how to cut, light & smoke', 'Optional: add another cigar for an additional cost'],
+          priceLabel: 'Cigar value', price: '150–200 kr'
+        },
+        {
+          tier: 'Package 02 · Most booked', name: 'The Signature', guests: 'Up to 15 guests', borderCol: '#b89968',
+          blurb: 'An elevated lounge evening designed to challenge the palate and deepen your appreciation of the craft. Ideal for enthusiasts and moderate-to-expert smokers.',
+          items: ['A selection of premium cigars', 'Advanced blind tasting for experienced smokers', 'Deep dive into complex flavor profiles', 'Hosted by our resident cigar expert'],
+          priceLabel: 'Cigar value', price: '250–400 kr'
+        },
+        {
+          tier: 'Package 03', name: 'The Reserve', guests: 'Up to 15 guests', borderCol: '#3a312a',
+          blurb: 'The ultimate expression of our lounge\u2019s hospitality — the harmony between exceptional tobacco and fine drinks. For celebrations, luxury corporate events and true aficionados.',
+          items: ['Curated super premium cigars from our finest inventory', 'Comprehensive \u201chow-to-pair\u201d masterclass', 'Guided pairings with carefully selected beverages'],
+          priceLabel: 'Cigars', price: 'Super premium'
+        }
+      ],
+      arts: [
+        { num: 'i.', name: 'The Cut', desc: 'A clean guillotine cut just above the cap line — enough to open the draw, never so deep the wrapper unravels.' },
+        { num: 'ii.', name: 'The Light', desc: 'Toast the foot over the flame without touching it. Rotate. Patience here decides the whole smoke.' },
+        { num: 'iii.', name: 'The Draw', desc: 'Cool, unhurried pulls — a cigar is tasted, not inhaled. One draw a minute keeps the burn true.' },
+        { num: 'iv.', name: 'The Ash', desc: 'A firm, even ash tells of good rolling and a steady hand. Let it fall when ready; never tap in haste.' }
+      ],
+      history: [
+        { year: 'c. 900', title: 'The first smoke', desc: 'The Maya and Taíno peoples of the Caribbean and Mesoamerica roll tobacco in palm and plantain leaves — ceremonial, medicinal, sacred. Pottery from this era already depicts the act.' },
+        { year: '1492', title: 'Europe meets the leaf', desc: 'Columbus lands in the Antilles; his crewmen return to Spain with dried leaves and the habit. Within a century, tobacco crosses every ocean under sail.' },
+        { year: '1817', title: 'The Cuban factory age', desc: 'Spain lifts its trade monopoly and Havana\u2019s great factories rise. The vitolas, the bands, the readers on the factory floor — the modern premium cigar takes its shape.' },
+        { year: '1960s', title: 'The diaspora', desc: 'Cuban makers emigrate and replant their seed in Nicaragua, Honduras and the Dominican Republic. Estelí\u2019s volcanic soils prove a rival to Vuelta Abajo itself.' },
+        { year: 'Today', title: 'The new world order', desc: 'Nicaragua stands beside Cuba at the top of the craft. Houses like Horacio and Barreda blend old-world technique with Estelí\u2019s bold, dark leaf — the cigars Flameline carries north.' }
+      ],
+      anatomy: [
+        { role: 'The face', name: 'Wrapper · Capa', desc: 'The single flawless leaf rolled around the outside. It carries the look, the aroma and up to half the flavor — Ecuadorian Colorado, Connecticut or dark San Andrés Maduro.' },
+        { role: 'The frame', name: 'Binder · Capote', desc: 'A strong, elastic leaf that holds the filler bundle in shape and manages the burn. Rarely seen, always felt — Barreda often uses Indonesian binder here.' },
+        { role: 'The engine', name: 'Filler · Tripa', desc: 'The blended heart: leaves from different primings and regions — Estelí strength, Jalapa sweetness, Condega balance — rolled entubado for a perfect draw.' }
+      ],
+      raminTips: [
+        { label: 'Match the moment', desc: 'Pick the vitola for the time you actually have — a Petit Robusto for a coffee break, a Churchill for a long evening. A rushed cigar is a wasted cigar.' },
+        { label: 'Start milder than you think', desc: 'Palates grow. Begin with a mild-to-medium blend, learn what you taste, and let the full-bodied smokes come to you later.' },
+        { label: 'Pair with intent', desc: 'Coffee lifts earthy notes, rum meets sweetness, a peated whisky wants a full Maduro. One good pairing teaches more than ten cigars alone.' },
+        { label: 'Retrohale — gently', desc: 'Once a smoke, let a little of the draw out through the nose. It is where the aroma lives — and where a great cigar separates itself.' }
+      ],
+      wholesalePkgs: [
+        {
+          name: 'Discovery', min: 'UP TO 15 GUESTS', rate: '680 kr',
+          items: ['Milder cigars for newer palates', 'Beginner blind tasting', 'Cut, light & smoke instruction'],
+          margin: 'Suggested resale 1 040 kr / guest'
+        },
+        {
+          name: 'Signature', min: 'UP TO 15 GUESTS', rate: '940 kr',
+          items: ['Premium cigar selection', 'Advanced blind tasting', 'Flavor-profile deep dive', 'Resident expert host'],
+          margin: 'Suggested resale 1 450 kr / guest'
+        },
+        {
+          name: 'Reserve', min: 'UP TO 15 GUESTS', rate: '1 180 kr',
+          items: ['Super premium cigars', 'How-to-pair masterclass', 'Guided beverage pairings'],
+          margin: 'Suggested resale 1 900 kr / guest'
+        }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
